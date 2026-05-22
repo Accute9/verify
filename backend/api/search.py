@@ -29,6 +29,7 @@ def retrieve_sources(subclaim: str):
             "query": q,
             "title": result["title"],
             "url": result["link"],
+            "snippet": result["snippet"]
         } for result in response.get("organic", [])
     ]
     return clean_results
