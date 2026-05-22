@@ -5,9 +5,11 @@ import os
 from langchain_openai import ChatOpenAI
 from .prompts.claim_generation_prompt import claim_generation_prompt
 from .prompts.claim_separator_prompt import claim_separator_prompt
-from .prompts.claim_search_prompt  import claim_search_prompt
+from .search import retrieve_sources
+# from .prompts.claim_search_prompt  import claim_search_prompt
 from langchain_openrouter import ChatOpenRouter
 import httpx
+import json
 
 router = APIRouter()
 load_dotenv()
@@ -41,10 +43,4 @@ def separate_claim(claim: str):
     user = claim_separator_prompt(claim)
     return call_llm(system, user)
 
-# def search_claims(subclaims: list):
-#     system = SYSTEM_PROMPT
-#     user = claim_search_prompt(subclaims)
-#     return call_llm(system, user)
 
-# print(generate_claim(claim_prompt.format(content="The Eiffel Tower is located in Paris, France. It was completed in 1889 and is one of the most recognizable landmarks in the world.")))
-# print(separate_claim(claim_separator_prompt.format(claim="Vitamin C cures the flu in 24 hours")))
