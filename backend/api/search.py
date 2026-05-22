@@ -1,12 +1,13 @@
 import httpx
 from dotenv import load_dotenv
 import os
-from .prompts.claim_search_prompt  import claim_search_prompt
+from prompts.claim_search_prompt  import claim_search_prompt
 from tavily import TavilyClient
+import json
 
 load_dotenv()
-SEARCH_API_KEY = os.getenv("SEARCH_API_KEY")
-print(SEARCH_API_KEY)
+SERPER_API_KEY = os.getenv("SERPER_API_KEY")
+# print(SERPER_API_KEY)
 
 # def retrieve_sources(subclaim: str):
 #     search_prompt = claim_search_prompt(subclaim)
@@ -21,12 +22,31 @@ print(SEARCH_API_KEY)
 #     return response.json()
 
 def retrieve_sources(subclaim: str):
-    client = TavilyClient(SEARCH_API_KEY)
-    search_prompt = claim_search_prompt(subclaim)
-    response = client.search(search_prompt, num_results=3)
-    return response
+    # search_prompt = claim_search_prompt(subclaim)
+    search_prompt = subclaim
+    response = httpx.post(
+        "https://google.serper.dev/search",
+        headers={
+            "X-API-KEY": os.environ["SERPER_API_KEY"],
+            "Content-Type": "application/json"
+        },
+        json={
+            "q": search_prompt,
+            "num": 3
+        }
+    ).json()
+    q = response["searchParameters"]["q"]
+    clean_results = [
+        {
+            "query": q,
+            "title": result["title"],
+            "url": result["link"],
+        } for result in response.get("organic", [])
+    ]
+    return clean_results
 
 
 
 
-print(retrieve_sources("Having a phone in the same room can reduce sleep quality, even if not actively used, due to subconscious alertness."))
+print(retrieve_sources("Having a phone in the bedroom can lead to reduced sleep quality"))
+    
