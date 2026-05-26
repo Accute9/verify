@@ -13,7 +13,7 @@ def index():
 @app.get("/fact-check")
 async def fact_check():
     content = """“Nobody talks about this, but your phone is probably ruining your sleep even if you stop using it before bed. Researchers found that just having your phone in the same room can reduce sleep quality because your brain stays subconsciously alert. That’s why high performers leave their phones outside the bedroom completely. One study even showed people fell asleep faster and had deeper REM sleep after only three nights without a phone nearby.”"""
-    evaluation = evaluate_claim(content)
+    evaluation = await evaluate_claim(content)
     return evaluation
 
     

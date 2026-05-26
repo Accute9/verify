@@ -5,6 +5,7 @@ from langchain_openai import ChatOpenAI
 import httpx
 import json
 import asyncio
+import time
 from .prompts.claim_generation_prompt import claim_generation_prompt
 from .prompts.claim_separator_prompt import claim_separator_prompt
 from .prompts.claim_evaluation_prompt import claim_evaluation_prompt
@@ -46,10 +47,15 @@ def average_confidence(evaluation_data: str) -> float:
     scores = [subclaim["subclaim_confidence_score"] for subclaim in evaluation_data["subclaim_evaluations"]]
     return sum(scores) / len(scores) if scores else 0.0
 
-def evaluate_claim(content: str):
+async def evaluate_claim(content: str):
     generated_claim = json.loads(generate_claim(content))["claim"]
     subclaims = json.loads(separate_claim(generated_claim))["subclaims"]
-    search_results = [retrieve_sources(cl) for cl in subclaims]
+    start = time.perf_counter()
+    async with httpx.AsyncClient(timeout=20.0) as client:
+        search_results = await asyncio.gather(*[retrieve_sources(cl, client) for cl in subclaims])
+    latency = time.perf_counter() - start
+    print(f"Search latency: {latency:.2f} seconds")
+    
     user = claim_evaluation_prompt(generated_claim, subclaims, search_results)
     eval_data = call_llm(SYSTEM_PROMPT, user)
     avg_confidence = average_confidence(json.loads(eval_data))
@@ -62,4 +68,3 @@ def evaluate_claim(content: str):
     }
     # return eval_data
     
-print(evaluate_claim("""Nobody talks about this, but your phone is probably ruining your sleep even if you stop using it before bed. Researchers found that just having your phone in the same room can reduce sleep quality because your brain stays subconsciously alert. That’s why high performers leave their phones outside the bedroom completely. One study even showed people fell asleep faster and had deeper REM sleep after only three nights without a phone nearby."""))

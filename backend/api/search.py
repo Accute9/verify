@@ -3,16 +3,17 @@ from dotenv import load_dotenv
 import os
 # from .prompts.claim_search_prompt  import claim_search_prompt
 from tavily import TavilyClient
+import asyncio
 import json
 
 load_dotenv()
 SERPER_API_KEY = os.getenv("SERPER_API_KEY")
 
 
-def retrieve_sources(subclaim: str):
+async def retrieve_sources(subclaim: str, client: httpx.AsyncClient):
     # search_prompt = claim_search_prompt(subclaim)
     search_prompt = subclaim
-    response = httpx.post(
+    response = await client.post(
         "https://google.serper.dev/search",
         headers={
             "X-API-KEY": os.environ["SERPER_API_KEY"],
@@ -22,7 +23,8 @@ def retrieve_sources(subclaim: str):
             "q": search_prompt,
             "num": 3
         }
-    ).json()
+    )
+    response = response.json()
     q = response["searchParameters"]["q"]
     clean_results = [
         {
@@ -37,5 +39,5 @@ def retrieve_sources(subclaim: str):
 
 
 
-print(retrieve_sources("Having a phone in the bedroom can lead to reduced sleep quality"))
+# print(retrieve_sources("Having a phone in the bedroom can lead to reduced sleep quality"))
     
