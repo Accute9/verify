@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <body>
+    <button id="start">Start Recording</button>
+    <button id="stop">Stop Recording</button>
+    <div id="recorded-transcript">
+        <script>
+            const startButton = document.getElementById('start');
+            const stopButton = document.getElementById('stop');
+
+            async function recordAudio() {
+                // use chrome.tabCapture API
+                const stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
+                const socket = new WebSocket('ws://127.0.0.1:8000/ws');
+                socket.addEventListener('open', (e) => {
+                    const mediaRecorder = new MediaRecorder(stream);
+                    // send audio data every 3 seconds
+                    mediaRecorder.addEventListener('dataavailable', (e) => {
+                        if (e.data.size > 0 && socket.readyState === WebSocket.OPEN) {
+                            socket.send(e.data);
+                        }
+                    });
+                    mediaRecorder.start(3000);
+                })
+
+            }
+
+            startButton.addEventListener('click', async () => {
+                await recordAudio();
+            })
+        </script>
+    </div>
+    </head>
+    </body>
+</html>
