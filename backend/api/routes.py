@@ -5,7 +5,7 @@ from .whisper_model import transcribe_audio
 import json
 import asyncio
 import os
-import wave
+import traceback
 import uuid
 
 app = FastAPI()
@@ -31,49 +31,88 @@ async def fact_check():
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
-    CHUNK_THRESHOLD = 10
+    CHUNK_THRESHOLD = 5
     await websocket.accept()
     print("WebSocket connection accepted")
+
     buffer = bytearray()
     chunk_count = 0
+    webm_header = None
+    first_batch = True
+
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     output_folder = os.path.join(BASE_DIR, "temp")
     os.makedirs(output_folder, exist_ok=True)
-    try:
+    send_lock = asyncio.Lock() # ensure only one send_text at a time
+
+    async def send_message_threadsafe(message: str):
+        async with send_lock:
+            try:
+                await websocket.send_text(message)
+            except Exception as e:
+                print(f"Error sending message: {e}")
+
+    async def keep_alive():
         while True:
+            await asyncio.sleep(10)
+            await send_message_threadsafe(json.dumps({"status": "keep-alive ping"}))
+
+    asyncio.create_task(keep_alive())
+
+    async def transcribe_and_send(websocket: WebSocket, audio_data: bytes, file_path: str):
+        try:
+            loop = asyncio.get_running_loop()
+            transcription = await loop.run_in_executor(None, transcribe_audio, file_path)
+            print(f"Transcription: {transcription}")
+            await send_message_threadsafe(json.dumps({"transcription": transcription}))
+        except Exception as e:
+            print(f"Transcription error: {e}")
+            traceback.print_exc()
+            try:
+                await send_message_threadsafe(json.dumps({"error": f"Transcription error: {str(e)}"}))
+            except Exception as e:
+                print(f"Failed to send error message to client: {e}")
+
+    try:
+        while True: 
             print("Waiting for data...")
             data = await websocket.receive_bytes()
+            # MediaRecorder omits header for every batch after first
+            if webm_header is None:
+                webm_header = bytes(data) # webm header must contain data of first batch
             buffer.extend(data)
             chunk_count += 1
             print(f"Chunk received: {len(data)} bytes, total buffer size: {len(buffer)} bytes, chunk count: {chunk_count}")
             # client has been timing out waiting for response, so send confirmation response
-            # await websocket.send_text(json.dumps({"status": "chunk received", "chunk_count": chunk_count}))
-            await websocket.send_text(json.dumps({"status": "chunk received", "chunk_count": chunk_count}))
+            # await send_queue.put(json.dumps({"status": "chunk received", "chunk_count": chunk_count}))
+            # wait websocket.send_text(json.dumps({"status": "chunk received", "chunk_count": chunk_count}))
             if chunk_count >= CHUNK_THRESHOLD:
-                audio_data = bytes(buffer)
+                if first_batch:
+                    audio_data = bytes(buffer)
+                    first_batch = False
+                else:
+                    audio_data = webm_header + bytes(buffer)
                 buffer.clear()
                 chunk_count = 0
-                print(f"DATA RECEIVED: {len(data)} bytes")
+                print(f"Processing batch: {len(audio_data)} bytes")
                 file_path = os.path.join(output_folder, f"{uuid.uuid4()}.webm")
                 with open(file_path, "wb") as f:
                     f.write(audio_data)
                 print(f"File written: {file_path}")
-                try:
-                    transcription = await asyncio.get_running_loop().run_in_executor(
-                        None, transcribe_audio, file_path
-                    )
-                    print(f"Transcription: {transcription}")
-                    await websocket.send_text(json.dumps({"transcription": transcription}))
-                except Exception as e:
-                    print(f"Transcription error: {e}")
-                    await websocket.send_text(json.dumps({"error": str(e)}))
+                # try:
+                asyncio.create_task(transcribe_and_send(websocket, audio_data, file_path))
+                # except Exception as e:
+                #     print(f"Transcription error: {e}")
+                #     try:
+                #         await send_message_threadsafe(json.dumps({"error": f"Transcription error: {str(e)}"}))
+                #     except Exception:
+                #         print("Failed to send error message to client")
     except WebSocketDisconnect:
         print("WebSocket disconnected")
+        traceback.print_exc()
     except Exception as e:
         print(f"Unexpected error: {type(e).__name__}: {e}")
+        traceback.print_exc()
 
-# @app.post("/transcribe")
-# def transcribe(file: UploadFile = File(...)):
-#     file_location = f"temp/{file.filename}" # deleted after transcription
  
 
