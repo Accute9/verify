@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>Verify</head>
+    <body>
+    <button id="start" type="button">Start Recording</button>
+    <button id="stop" type="button">Stop Recording</button>
+    <div id="recorded-transcript"></div>
+    <script>
+        const startButton = document.getElementById('start');
+        const stopButton = document.getElementById('stop');
+
+        async function recordAudio() {
+            try {
+                console.log('Requesting display media...');
+                const stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
+                console.log('Display media stream obtained:', stream);
+                const socket = new WebSocket('ws://127.0.0.1:8000/ws');
+
+                socket.onclose = (e) => {
+                    console.log('Socket closed — code:', e.code, 'reason:', e.reason, 'wasClean:', e.wasClean);
+                }
+
+                socket.onmessage = (e) => {
+                    console.log('Message from server:', e.data);
+                    const msg = JSON.parse(e.data);
+                    if (msg.status == "keep-alive ping") {
+                        return;
+                    }
+                    if (msg.transcription) {
+                        console.log('Transcription: ', msg.transcription);
+                        document.getElementById('recorded-transcript').innerText += msg.transcription + ' ';
+                    } else {
+                        console.log('Server message:', msg);
+                    }
+                }
+
+                socket.onerror = (e) => {
+                    console.log('Socket error:', e);
+                }
+
+                socket.addEventListener('open', (e) => {
+                    const audioTracks = stream.getAudioTracks();
+                    console.log('Audio tracks:', audioTracks);
+                    if (audioTracks.length === 0) {
+                        console.error('No audio tracks found in the stream.');
+                        return;
+                    }
+                    const audioRecorder = new MediaStream(stream.getAudioTracks());
+                    const mediaRecorder = new MediaRecorder(audioRecorder, {mimeType: 'audio/webm;codecs=opus'});
+                    mediaRecorder.addEventListener('dataavailable', (e) => {
+                        if (e.data.size > 0 && socket.readyState === WebSocket.OPEN) {
+                            socket.send(e.data);
+                        }
+                    });
+                    mediaRecorder.start(2000);
+                })
+            } catch (err) {
+                console.error('Error accessing display media:', err);
+            }
+        }
+
+        startButton.addEventListener('click', async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            await recordAudio();
+        })
+    </script>
+    </body>
+</html>
