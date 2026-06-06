@@ -2,7 +2,7 @@ import whisper
 import asyncio
 import json
 
-model = whisper.load_model("tiny")
+model = whisper.load_model("base")
 
 def transcribe_audio(file_path: str) -> str:
     result = model.transcribe(file_path)

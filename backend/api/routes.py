@@ -7,6 +7,7 @@ import asyncio
 import os
 import traceback
 import uuid
+import subprocess
 
 app = FastAPI()
 
@@ -31,13 +32,13 @@ async def fact_check():
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
-    CHUNK_THRESHOLD = 5
+    CHUNK_THRESHOLD = 10
     await websocket.accept()
     print("WebSocket connection accepted")
 
     buffer = bytearray()
     chunk_count = 0
-    webm_header = None
+    webm_header = b""
     first_batch = True
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -51,6 +52,13 @@ async def websocket_endpoint(websocket: WebSocket):
                 await websocket.send_text(message)
             except Exception as e:
                 print(f"Error sending message: {e}")
+
+    def convert_webm_to_wav(file_path: str) -> str:
+        output_path = file_path.replace(".webm", ".wav")
+        subprocess.run([
+            "ffmpeg", "-y", "-i", file_path, "-ar", "16000", "-ac", "1", output_path
+        ], capture_output=True)
+        return output_path
 
     async def keep_alive():
         while True:
@@ -72,14 +80,18 @@ async def websocket_endpoint(websocket: WebSocket):
                 await send_message_threadsafe(json.dumps({"error": f"Transcription error: {str(e)}"}))
             except Exception as e:
                 print(f"Failed to send error message to client: {e}")
+            # os.remove(file_path) # clean up file after processing
 
     try:
         while True: 
             print("Waiting for data...")
             data = await websocket.receive_bytes()
             # MediaRecorder omits header for every batch after first
-            if webm_header is None:
-                webm_header = bytes(data) # webm header must contain data of first batch
+            if webm_header == b"": # if empty byte object, this is the first batch and contains header
+                # webm_header = bytes(data) # webm header must contain data of first batch
+                cluster_marker = bytes([0x1F, 0x43, 0xB6, 0x75]) # start of cluster in webm
+                cluster_index = bytes(data).find(cluster_marker)
+                webm_header = bytes(data[:cluster_index]) if cluster_index != -1 else webm_header
             buffer.extend(data)
             chunk_count += 1
             print(f"Chunk received: {len(data)} bytes, total buffer size: {len(buffer)} bytes, chunk count: {chunk_count}")
@@ -99,8 +111,9 @@ async def websocket_endpoint(websocket: WebSocket):
                 with open(file_path, "wb") as f:
                     f.write(audio_data)
                 print(f"File written: {file_path}")
+                wav_path = convert_webm_to_wav(file_path)
                 # try:
-                asyncio.create_task(transcribe_and_send(websocket, audio_data, file_path))
+                asyncio.create_task(transcribe_and_send(websocket, audio_data, wav_path))
                 # except Exception as e:
                 #     print(f"Transcription error: {e}")
                 #     try:
