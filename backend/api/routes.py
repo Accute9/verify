@@ -114,12 +114,6 @@ async def websocket_endpoint(websocket: WebSocket):
                 wav_path = convert_webm_to_wav(file_path)
                 # try:
                 asyncio.create_task(transcribe_and_send(websocket, audio_data, wav_path))
-                # except Exception as e:
-                #     print(f"Transcription error: {e}")
-                #     try:
-                #         await send_message_threadsafe(json.dumps({"error": f"Transcription error: {str(e)}"}))
-                #     except Exception:
-                #         print("Failed to send error message to client")
     except WebSocketDisconnect:
         print("WebSocket disconnected")
         traceback.print_exc()

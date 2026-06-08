@@ -8,62 +8,92 @@
     <script>
         const startButton = document.getElementById('start');
         const stopButton = document.getElementById('stop');
+        // maintain references to the WebSocket and MediaRecorder instances to stop em later
+        let keepAlive = true;
+        let activeSocket = null;
+        let activeMediaRecorder = null;
+        let activeMediaStream = null;
+        
+
 
         async function recordAudio() {
-            try {
-                console.log('Requesting display media...');
-                const stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
-                console.log('Display media stream obtained:', stream);
-                const socket = new WebSocket('ws://127.0.0.1:8000/ws');
-
-                socket.onclose = (e) => {
-                    console.log('Socket closed — code:', e.code, 'reason:', e.reason, 'wasClean:', e.wasClean);
-                }
-
-                socket.onmessage = (e) => {
-                    console.log('Message from server:', e.data);
-                    const msg = JSON.parse(e.data);
-                    if (msg.status == "keep-alive ping") {
-                        return;
+                if (keepAlive) {
+                try {
+                    console.log('Requesting display media...');
+                    const stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
+                    activeMediaStream = stream;
+                    const socket = new WebSocket('ws://127.0.0.1:8000/ws');
+                    activeSocket = socket;
+                    console.log('Display media stream obtained:', stream);
+                    
+                    socket.onclose = (e) => {
+                        console.log('Socket closed — code:', e.code, 'reason:', e.reason, 'wasClean:', e.wasClean);
                     }
-                    if (msg.transcription) {
-                        console.log('Transcription: ', msg.transcription);
-                        document.getElementById('recorded-transcript').innerText += msg.transcription + ' ';
-                    } else {
-                        console.log('Server message:', msg);
-                    }
-                }
 
-                socket.onerror = (e) => {
-                    console.log('Socket error:', e);
-                }
-
-                socket.addEventListener('open', (e) => {
-                    const audioTracks = stream.getAudioTracks();
-                    console.log('Audio tracks:', audioTracks);
-                    if (audioTracks.length === 0) {
-                        console.error('No audio tracks found in the stream.');
-                        return;
-                    }
-                    const audioRecorder = new MediaStream(stream.getAudioTracks());
-                    const mediaRecorder = new MediaRecorder(audioRecorder, {mimeType: 'audio/webm;codecs=opus'});
-                    mediaRecorder.addEventListener('dataavailable', (e) => {
-                        if (e.data.size > 0 && socket.readyState === WebSocket.OPEN) {
-                            socket.send(e.data);
+                    socket.onmessage = (e) => {
+                        console.log('Message from server:', e.data);
+                        const msg = JSON.parse(e.data);
+                        if (msg.status == "keep-alive ping") {
+                            return;
                         }
-                    });
-                    mediaRecorder.start(2000);
-                })
-            } catch (err) {
-                console.error('Error accessing display media:', err);
+                        if (msg.transcription) {
+                            console.log('Transcription: ', msg.transcription);
+                            document.getElementById('recorded-transcript').innerText += msg.transcription + ' ';
+                        } else {
+                            console.log('Server message:', msg);
+                        }
+                    }
+
+                    socket.onerror = (e) => {
+                        console.log('Socket error:', e);
+                    }
+
+                    socket.addEventListener('open', (e) => {
+                        const audioTracks = stream.getAudioTracks();
+                        console.log('Audio tracks:', audioTracks);
+                        if (audioTracks.length === 0) {
+                            console.error('No audio tracks found in the stream.');
+                            return;
+                        }
+                        const audioRecorder = new MediaStream(stream.getAudioTracks());
+                        const mediaRecorder = new MediaRecorder(audioRecorder, {mimeType: 'audio/webm;codecs=opus'});
+                        activeMediaRecorder = mediaRecorder;
+                        mediaRecorder.addEventListener('dataavailable', (e) => {
+                            if (e.data.size > 0 && socket.readyState === WebSocket.OPEN) {
+                                socket.send(e.data);
+                            }
+                        });
+                        mediaRecorder.start(2000);
+                    })
+                } catch (err) {
+                    console.error('Error accessing display media:', err);
+                }
             }
         }
+    
 
         startButton.addEventListener('click', async (e) => {
             e.preventDefault();
             e.stopPropagation();
             await recordAudio();
         })
+
+        stopButton.addEventListener('click', (e) => {
+            console.log('Stop button clicked. Stopping recording and closing resources...');
+            e.preventDefault();
+            e.stopPropagation();
+            keepAlive = false; 
+            if (activeMediaRecorder && activeMediaRecorder.state !== 'inactive') {
+                activeMediaRecorder.stop();
+            }
+            if (activeMediaStream) {
+                activeMediaStream.getTracks().forEach(track => track.stop()); // stop all tracks to release resources
+            }
+            if (activeSocket && activeSocket.readyState === WebSocket.OPEN) {
+                activeSocket.close();
+            }
+        })
+        
     </script>
     </body>
 </html>
