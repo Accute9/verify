@@ -1,13 +1,12 @@
 from fastapi import FastAPI, UploadFile, File, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from .llm import evaluate_claim
-from .whisper_model import transcribe_audio
+from .whisper_model import transcribe_and_send, flush_remaining_buffer, convert_webm_to_wav
 import json
 import asyncio
 import os
 import traceback
 import uuid
-import subprocess
 
 app = FastAPI()
 
@@ -53,13 +52,6 @@ async def websocket_endpoint(websocket: WebSocket):
             except Exception as e:
                 print(f"Error sending message: {e}")
 
-    def convert_webm_to_wav(file_path: str) -> str:
-        output_path = file_path.replace(".webm", ".wav")
-        subprocess.run([
-            "ffmpeg", "-y", "-i", file_path, "-ar", "16000", "-ac", "1", output_path
-        ], capture_output=True)
-        return output_path
-
     async def keep_alive():
         while True:
             await asyncio.sleep(10)
@@ -67,25 +59,29 @@ async def websocket_endpoint(websocket: WebSocket):
 
     asyncio.create_task(keep_alive())
 
-    async def transcribe_and_send(websocket: WebSocket, audio_data: bytes, file_path: str):
-        try:
-            loop = asyncio.get_running_loop()
-            transcription = await loop.run_in_executor(None, transcribe_audio, file_path)
-            print(f"Transcription: {transcription}")
-            await send_message_threadsafe(json.dumps({"transcription": transcription}))
-        except Exception as e:
-            print(f"Transcription error: {e}")
-            traceback.print_exc()
-            try:
-                await send_message_threadsafe(json.dumps({"error": f"Transcription error: {str(e)}"}))
-            except Exception as e:
-                print(f"Failed to send error message to client: {e}")
-            # os.remove(file_path) # clean up file after processing
-
     try:
-        while True: 
+        while True:
             print("Waiting for data...")
-            data = await websocket.receive_bytes()
+            message = await websocket.receive()
+            if message["type"] == "websocket.disconnect":
+                raise WebSocketDisconnect(message.get("code", 1000))
+
+            # check stop signal
+            if "text" in message:
+                try:
+                    payload = json.loads(message["text"])
+                except json.JSONDecodeError:
+                    continue
+                if payload.get("action") == "stop":
+                    print("Stop signal received from client")
+                    await flush_remaining_buffer(buffer, webm_header, send_message_threadsafe)
+                    await websocket.close()
+                    break
+                continue
+
+            data = message.get("bytes")
+            if data is None:
+                continue
             # MediaRecorder omits header for every batch after first
             if webm_header == b"": # if empty byte object, this is the first batch and contains header
                 # webm_header = bytes(data) # webm header must contain data of first batch
@@ -113,10 +109,11 @@ async def websocket_endpoint(websocket: WebSocket):
                 print(f"File written: {file_path}")
                 wav_path = convert_webm_to_wav(file_path)
                 # try:
-                asyncio.create_task(transcribe_and_send(websocket, audio_data, wav_path))
+                asyncio.create_task(transcribe_and_send(wav_path, send_message_threadsafe))
     except WebSocketDisconnect:
         print("WebSocket disconnected")
-        traceback.print_exc()
+        
+        # traceback.print_exc() - for debugging purposes
     except Exception as e:
         print(f"Unexpected error: {type(e).__name__}: {e}")
         traceback.print_exc()

@@ -90,7 +90,8 @@
                 activeMediaStream.getTracks().forEach(track => track.stop()); // stop all tracks to release resources
             }
             if (activeSocket && activeSocket.readyState === WebSocket.OPEN) {
-                activeSocket.close();
+                activeSocket.send(JSON.stringify({action: "stop"}));
+                // activeSocket.close();
             }
         })
         
