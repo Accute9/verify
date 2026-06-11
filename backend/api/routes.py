@@ -1,4 +1,5 @@
 from fastapi import FastAPI, UploadFile, File, WebSocket, WebSocketDisconnect
+from fastapi.websockets import WebSocketState
 from fastapi.middleware.cors import CORSMiddleware
 from .llm import evaluate_claim
 from .whisper_model import transcribe_and_send, flush_remaining_buffer, convert_webm_to_wav
@@ -47,6 +48,8 @@ async def websocket_endpoint(websocket: WebSocket):
 
     async def send_message_threadsafe(message: str):
         async with send_lock:
+            if websocket.client_state != WebSocketState.CONNECTED:
+                return
             try:
                 await websocket.send_text(message)
             except Exception as e:
@@ -57,7 +60,8 @@ async def websocket_endpoint(websocket: WebSocket):
             await asyncio.sleep(10)
             await send_message_threadsafe(json.dumps({"status": "keep-alive ping"}))
 
-    asyncio.create_task(keep_alive())
+    keep_alive_task = asyncio.create_task(keep_alive())
+    transcription_tasks = set() # track tasks from transcription stuff ya feel
 
     try:
         while True:
@@ -75,10 +79,12 @@ async def websocket_endpoint(websocket: WebSocket):
                 if payload.get("action") == "stop":
                     print("Stop signal received from client")
                     await flush_remaining_buffer(buffer, webm_header, send_message_threadsafe)
+                    if transcription_tasks:
+                        await asyncio.gather(*transcription_tasks, return_exceptions=True) # wait for all transcription tasks to finish
+                    keep_alive_task.cancel() # stop keep-alive pings
                     await websocket.close()
                     break
                 continue
-
             data = message.get("bytes")
             if data is None:
                 continue
@@ -109,14 +115,19 @@ async def websocket_endpoint(websocket: WebSocket):
                 print(f"File written: {file_path}")
                 wav_path = convert_webm_to_wav(file_path)
                 # try:
-                asyncio.create_task(transcribe_and_send(wav_path, send_message_threadsafe))
+                transcription_task = asyncio.create_task(transcribe_and_send(wav_path, send_message_threadsafe))
+                transcription_task.add_done_callback(transcription_tasks.discard) # remove from set when done
+                transcription_tasks.add(transcription_task)
     except WebSocketDisconnect:
         print("WebSocket disconnected")
-        
         # traceback.print_exc() - for debugging purposes
     except Exception as e:
         print(f"Unexpected error: {type(e).__name__}: {e}")
         traceback.print_exc()
+    finally:
+        keep_alive_task.cancel()
+        for task in transcription_tasks:
+            task.cancel()
 
  
 
