@@ -13,9 +13,6 @@
         let activeSocket = null;
         let activeMediaRecorder = null;
         let activeMediaStream = null;
-        
-
-
         async function recordAudio() {
                 if (keepAlive) {
                 try {
@@ -41,6 +38,9 @@
                             document.getElementById('recorded-transcript').innerText += msg.transcription + ' ';
                         } else {
                             console.log('Server message:', msg);
+                        }
+                        if (msg.final_transcript) {
+                            console.log('Final transcript received:', msg.final_transcript);
                         }
                     }
 
@@ -70,7 +70,6 @@
                 }
             }
         }
-    
 
         startButton.addEventListener('click', async (e) => {
             e.preventDefault();
@@ -90,7 +89,11 @@
                 activeMediaStream.getTracks().forEach(track => track.stop()); // stop all tracks to release resources
             }
             if (activeSocket && activeSocket.readyState === WebSocket.OPEN) {
+
                 activeSocket.send(JSON.stringify({action: "stop"}));
+                
+                // console.log(msg.transcription);
+                // activeSocket.send(msg.transcription); // send the final transcript to the server for fact-checking
                 // activeSocket.close();
             }
         })
