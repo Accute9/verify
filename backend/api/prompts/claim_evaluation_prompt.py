@@ -13,8 +13,7 @@ def claim_evaluation_prompt(claim: str, subclaims: list, search_results: list) -
     "key_source": "url of the most important source that influenced your evaluation"
     }}.
     
-    Each evaluation should be no longer than a sentence, and should be based solely on the information provided in the search results. Do not use any outside knowledge or assumptions.
-    
+    Each evaluation should be no longer than a sentence, and should be based ONLY off of info from search results. DO NOT use any outside information or assumptions.
     Raw JSON only, no markdown.
     
     """

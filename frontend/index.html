@@ -5,6 +5,7 @@
     <button id="start" type="button">Start Recording</button>
     <button id="stop" type="button">Stop Recording</button>
     <div id="recorded-transcript"></div>
+    <div id="eval-result"></div>
     <script>
         const startButton = document.getElementById('start');
         const stopButton = document.getElementById('stop');
@@ -13,9 +14,6 @@
         let activeSocket = null;
         let activeMediaRecorder = null;
         let activeMediaStream = null;
-        
-
-
         async function recordAudio() {
                 if (keepAlive) {
                 try {
@@ -42,8 +40,37 @@
                         } else {
                             console.log('Server message:', msg);
                         }
-                    }
+                        if (msg.final_transcript) {
+                            console.log('Final transcript received:', msg.final_transcript);
+                        }
+                        if (msg.eval_result) {
+                            const result = msg.eval_result;
+                            console.log('Evaluation result received:', result);
+                            const subclaimsHtml = result.subclaim_evaluations.map(sc => `
+                        <li>
+                            <strong>${sc.subclaim}</strong><br>
+                            Evaluation: ${sc.evaluation}<br>
+                            Confidence: ${sc.subclaim_confidence_score}
+                        </li>
+                        `).join("");
 
+                        document.getElementById("eval-result").innerHTML = `
+                        <h3>Verdict: ${result.claim_evaluation}</h3>
+                        <p><strong>Confidence:</strong> ${result.confidence.toFixed(2)}</p>
+                        <p><strong>Reasoning:</strong> ${result.reasoning}</p>
+                        <p><strong>Source:</strong> 
+                            <a href="${result.key_source}" target="_blank">
+                                View Source
+                            </a>
+                        </p>
+
+                        <h4>Subclaim Analysis</h4>
+                        <ul>
+                            ${subclaimsHtml}
+                        </ul>
+                        `;
+                        }    
+                    }
                     socket.onerror = (e) => {
                         console.log('Socket error:', e);
                     }
@@ -70,7 +97,6 @@
                 }
             }
         }
-    
 
         startButton.addEventListener('click', async (e) => {
             e.preventDefault();
@@ -90,7 +116,11 @@
                 activeMediaStream.getTracks().forEach(track => track.stop()); // stop all tracks to release resources
             }
             if (activeSocket && activeSocket.readyState === WebSocket.OPEN) {
+
                 activeSocket.send(JSON.stringify({action: "stop"}));
+                
+                // console.log(msg.transcription);
+                // activeSocket.send(msg.transcription); // send the final transcript to the server for fact-checking
                 // activeSocket.close();
             }
         })

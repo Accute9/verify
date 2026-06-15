@@ -3,12 +3,10 @@ from dotenv import load_dotenv
 import os
 # from .prompts.claim_search_prompt  import claim_search_prompt
 from tavily import TavilyClient
-import asyncio
-import json
+
 
 load_dotenv()
 SERPER_API_KEY = os.getenv("SERPER_API_KEY")
-
 
 async def retrieve_sources(subclaim: str, client: httpx.AsyncClient):
     # search_prompt = claim_search_prompt(subclaim)
