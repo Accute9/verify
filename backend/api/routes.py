@@ -24,12 +24,6 @@ app.add_middleware(
 def index():
     return {"message": "verify is working"}
 
-@app.get("/fact-check")
-async def fact_check():
-    content = """“Nobody talks about this, but your phone is probably ruining your sleep even if you stop using it before bed. Researchers found that just having your phone in the same room can reduce sleep quality because your brain stays subconsciously alert. That’s why high performers leave their phones outside the bedroom completely. One study even showed people fell asleep faster and had deeper REM sleep after only three nights without a phone nearby.”"""
-    evaluation = await evaluate_claim(content)
-    return evaluation
-
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     CHUNK_THRESHOLD = 10
@@ -45,6 +39,11 @@ async def websocket_endpoint(websocket: WebSocket):
     output_folder = os.path.join(BASE_DIR, "temp")
     os.makedirs(output_folder, exist_ok=True)
     send_lock = asyncio.Lock() # ensure only one send_text at a time
+    
+    async def fact_check_endpoint(transcript_parts: list):
+        content = " ".join(transcript_parts)
+        eval_result = await evaluate_claim(content)
+        return eval_result
 
     async def send_message_threadsafe(message: str):
         async with send_lock:
@@ -84,6 +83,8 @@ async def websocket_endpoint(websocket: WebSocket):
                         await asyncio.gather(*transcription_tasks, return_exceptions=True) # wait for all transcription tasks to finish
                     keep_alive_task.cancel() # stop keep-alive pings
                     await send_message_threadsafe(json.dumps({"final_transcript": " ".join(transcript_parts)})) # send final transcript to client
+                    eval_result = await fact_check_endpoint(transcript_parts)
+                    await send_message_threadsafe(json.dumps({"eval_result": eval_result})) # send evaluation result to client
                     await websocket.close()
                     break
                 continue

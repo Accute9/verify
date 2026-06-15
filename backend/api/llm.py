@@ -25,15 +25,25 @@ def call_llm(system: str, user: str) -> str:
         },
         json={
             "model": "google/gemini-2.5-flash",
-            "max_tokens": 1000,
+            "max_tokens": 2000,
             "response_format": {"type": "json_object"},
             "messages": [
                 {"role": "system", "content": system},
                 {"role": "user", "content": user},
             ],
         },
+        timeout=60.0,
     )
-    return (request.json())["choices"][0]["message"]["content"]
+    return parse_llm_response((request.json())["choices"][0]["message"]["content"])
+
+def parse_llm_response(response: str) -> str:
+    return (
+        response.strip()
+        .replace("\n", "")
+        .replace("```json", "")
+        .replace("```", "")
+        .strip()
+    )
 
 def generate_claim(content: str):
     user = claim_generation_prompt(content)
