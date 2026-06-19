@@ -3,7 +3,7 @@ from fastapi.websockets import WebSocketState
 from fastapi.middleware.cors import CORSMiddleware
 from .llm import evaluate_claim
 from .whisper_model import transcribe_and_send, flush_remaining_buffer, convert_webm_to_wav
-from .database.load_db import store_transcript
+from .database.load_db import store_transcript, generate_bigint_id
 import json
 import asyncio
 import os
@@ -84,12 +84,12 @@ async def websocket_endpoint(websocket: WebSocket):
                     await flush_remaining_buffer(transcript_parts, buffer, webm_header, send_message_threadsafe)
                     if transcription_tasks:
                         await asyncio.gather(*transcription_tasks, return_exceptions=True) # wait for all transcription tasks to finish
-                    keep_alive_task.cancel() # stop keep-alive pings
                     await send_message_threadsafe(json.dumps({"final_transcript": " ".join(transcript_parts)})) # send final transcript to client
-                    transcript_id = uuid.uuid4().int  # Generate a unique ID for this transcript
+                    transcript_id = generate_bigint_id()  # Generate a unique ID for this transcript
                     # store_transcript(" ".join(transcript_parts), transcript_id)  # Store the final transcript in the database
                     eval_result = await fact_check_endpoint(transcript_parts, transcript_id)
                     await send_message_threadsafe(json.dumps({"eval_result": eval_result})) # send evaluation result to client
+                    keep_alive_task.cancel() # stop keep-alive pings
                     await websocket.close()
                     break
                 continue
