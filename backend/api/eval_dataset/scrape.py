@@ -25,7 +25,7 @@ def store_scrapped_eval_data(eval_id: int, claim: str, verdict_text: str, author
     }).execute()
 
 def scrape_politifact(pages: int = 1):
-    for page in range(1, pages + 1):
+    for page in range(2, pages + 1):
         URL = f"https://www.politifact.com/factchecks/list/?page={page}"
         response = httpx.get(URL.format(page), headers={
             "User-Agent": "Mozilla/5.0"
@@ -59,4 +59,4 @@ def scrape_politifact(pages: int = 1):
 
 
 if __name__ == "__main__":
-    scrape_politifact(pages=1)
+    scrape_politifact(pages=10)
