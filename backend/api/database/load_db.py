@@ -40,10 +40,3 @@ def store_claim_evaluation(claim_id: int, transcript_id: int, overall_verdict: s
         "reasoning": reasoning,
     }).execute()
 
-def store_scrapped_eval_data(claim_id: int, eval: str, source: str, summary: str):
-    supabase.table("ece-calibration").insert({
-        "claim_id": claim_id,
-        "eval": eval,
-        "source": source,
-        "summary": summary,
-    }).execute()
