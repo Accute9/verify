@@ -27,7 +27,7 @@ async def call_llm(system: str, user: str) -> str:
             },
             json={
                 "model": "google/gemini-2.5-flash",
-                "max_tokens": 2000,
+                "max_tokens": 3500,
                 "response_format": {"type": "json_object"},
                 "messages": [
                     {"role": "system", "content": system},
@@ -35,7 +35,15 @@ async def call_llm(system: str, user: str) -> str:
                 ],
             },
         )
-    return parse_llm_response((request.json())["choices"][0]["message"]["content"])
+        body = request.json()
+        if "choices" not in body:
+            raise RuntimeError(f"OpenRouter request failed: {body}")
+        choice = body["choices"][0]
+        if choice.get("finish_reason") == "length":
+             raise RuntimeError(
+                "LLM response was truncated (hit max_tokens) before finishing JSON output." 
+            )
+        return parse_llm_response(choice["message"]["content"])
 
 def parse_llm_response(response: str) -> str:
     return (
@@ -46,21 +54,32 @@ def parse_llm_response(response: str) -> str:
         .strip()
     )
 
-async def generate_claim(content: str):
-    user = claim_generation_prompt(content)
-    return await call_llm(SYSTEM_PROMPT, user)
+async def call_llm_json(system: str, user: str, retries: int = 1) -> dict:
+    last_response = None
+    for attempt in range(retries + 1):
+        last_response = await call_llm(system, user)
+        try:
+            return json.loads(last_response)
+        except json.JSONDecodeError:
+            if attempt == retries:
+                print(f"Failed to parse LLM response as JSON:\n{last_response}")
+                raise
 
-async def separate_claim(claim: str):
+async def generate_claim(content: str) -> dict:
+    user = claim_generation_prompt(content)
+    return await call_llm_json(SYSTEM_PROMPT, user)
+
+async def separate_claim(claim: str) -> dict:
     user = claim_separator_prompt(claim)
-    return await call_llm(SYSTEM_PROMPT, user)
+    return await call_llm_json(SYSTEM_PROMPT, user)
 
 def average_confidence(evaluation_data: str) -> float:
     scores = [subclaim["subclaim_confidence_score"] for subclaim in evaluation_data["subclaim_evaluations"]]
     return sum(scores) / len(scores) if scores else 0.0
 
 async def evaluate_claim(content: str, transcript_id: int) -> dict:
-    generated_claim = json.loads(await generate_claim(content))["claim"]
-    subclaims = json.loads(await separate_claim(generated_claim))["subclaims"]
+    generated_claim = (await generate_claim(content))["claim"]
+    subclaims = (await separate_claim(generated_claim))["subclaims"]
     start = time.perf_counter()
     async with httpx.AsyncClient(timeout=20.0) as client:
         search_results = await asyncio.gather(*[retrieve_sources(cl, client) for cl in subclaims])
@@ -68,12 +87,12 @@ async def evaluate_claim(content: str, transcript_id: int) -> dict:
     print(f"Search latency: {latency:.2f} seconds")
 
     user = claim_evaluation_prompt(generated_claim, subclaims, search_results)
-    eval_data = json.loads(await call_llm(SYSTEM_PROMPT, user))
+    eval_data = await call_llm_json(SYSTEM_PROMPT, user)
     avg_confidence = average_confidence(eval_data)
 
     claim_id = generate_bigint_id()
-    store_claim_evaluation(claim_id, transcript_id, eval_data["claim_evaluation"], avg_confidence, eval_data["reasoning"])
-    store_subclaim_evaluations(eval_data["subclaim_evaluations"], claim_id, search_results)
+    # store_claim_evaluation(claim_id, transcript_id, eval_data["claim_evaluation"], avg_confidence, eval_data["reasoning"])
+    # store_subclaim_evaluations(eval_data["subclaim_evaluations"], claim_id, search_results)
 
     return_dict = {
         "claim_evaluation": eval_data["claim_evaluation"],

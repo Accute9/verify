@@ -27,9 +27,9 @@ async def retrieve_sources(subclaim: str, client: httpx.AsyncClient):
     clean_results = [
         {
             "query": q,
-            "title": result["title"],
-            "url": result["link"],
-            "snippet": result["snippet"]
+            "title": result.get("title", ""),
+            "url": result.get("link", ""),
+            "snippet": result.get("snippet", "")
         } for result in response.get("organic", [])
     ]
     return clean_results

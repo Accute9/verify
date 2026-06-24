@@ -6,12 +6,19 @@ def claim_evaluation_prompt(claim: str, subclaims: list, search_results: list) -
     Finally, use the evaluations of the subclaims to determine the overall veracity of the main claim, categorizing it as true, false, or mixed. 
     
     Return your evaluation in this raw JSON format with NO markdown: 
-    {{"claim_evaluation": "true/false/mixed", 
-    "confidence": average of subclaim confidence scores, 0.0-1.0, where a confidence score of 0.4 or below means evidence is weak/conflicting, and 1.0 means evidence is definitive",
-    "subclaim_evaluations": [{{"subclaim": subclaim1, "evaluation": "supported/refuted/inconclusive", "subclaim_confidence_score": score 0.0-1.0, (a confidence score of 0.4 or below mean evidence is weak/conflicting, 1.0 means evidence is definitive)}}, ...],
-    "reasoning": "2-3 sentences explaining verdict, referencing specific sources",
-    "key_source": "url of the most important source that influenced your evaluation"
-    }}.
+    {{
+    "claim_evaluation": "true/false/mixed",
+    "confidence": 0.0,
+    "subclaim_evaluations": [
+        {{
+        "subclaim": "subclaim1",
+        "evaluation": "supported/refuted/inconclusive",
+        "subclaim_confidence_score": 0.0
+        }}
+    ],
+    "reasoning": "1-2 sentences explaining the verdict, referencing specific sources. No more than 30 words total.",
+    "key_source": "https://example.com"
+    }}
     
     Each evaluation should be no longer than a sentence, and should be based ONLY off of info from search results. DO NOT use any outside information or assumptions.
     Raw JSON only, no markdown.
