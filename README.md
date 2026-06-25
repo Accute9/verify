@@ -32,6 +32,7 @@ Real-time audio: WebSockets + MediaRecorder
 
 **Flow**
 
+```
 ┌─────────────────────────────────────┐
 │     chrome.tabCapture / getDisplayMedia     │
 │         (audio chunks, webm)        │
@@ -79,3 +80,4 @@ Real-time audio: WebSockets + MediaRecorder
                    ▼
             Supabase
 transcripts → claims → subclaim_evaluations
+```
