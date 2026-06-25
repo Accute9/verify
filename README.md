@@ -15,16 +15,14 @@ Record live audio from any tab, and Verity will:
 Surface sources so every verdict is traceable, not just asserted
 
 
-What's completed
-
-Claim extraction, decomposition, evidence retrieval, and evaluation — full pipeline, end to end
+**What's completed**
+Claim extraction, decomposition, evidence retrieval, and evaluation (full pipeline, end to end)
 Real-time audio capture and transcription via WebSocket (handles buffering and async transcription so the connection never blocks)
 Supabase persistence with a normalized schema (transcripts → claims → subclaim_evaluations)
 PolitiFact ground-truth dataset scraped and stored for calibration work
 
 
-Tech stack
-
+**Tech stack**
 LLM: OpenRouter (Gemini 2.5 Flash) — direct API calls 
 Transcription: OpenAI Whisper (local)
 Evidence Retrieval: Serper API
@@ -34,39 +32,50 @@ Real-time audio: WebSockets + MediaRecorder
 
 **Flow**
 
-chrome.tabCapture / getDisplayMedia
-        │ audio chunks (webm)
-        ▼
-WebSocket (FastAPI)
-        │ receive_bytes() in loop
-        ▼
-buffer chunks (~9s window)
-        │
-        ▼
-asyncio.create_task()
-   (background, non-blocking)
-        │
-        ▼
-Whisper (local)
-        │ transcript text
-        ▼
-claim extractor (OpenRouter LLM call)
-        │ claims[]
-        ▼
-claim decomposer (OpenRouter LLM call)
-        │ subclaims[]
-        ▼
-Serper API
-        │ 3 sources per subclaim
-        ▼
-claim evaluator (OpenRouter LLM call)
-        │ verdict + confidence + reasoning
-        ▼
-parse_llm_response()
-        │ cap confidence ≤ 0.95
-        ▼
-send_queue → websocket.send_text()
-        │ JSON back to client
-        ▼
-Supabase
-   transcripts → claims → subclaim_evaluations
+┌─────────────────────────────────────┐
+│     chrome.tabCapture / getDisplayMedia     │
+│         (audio chunks, webm)        │
+└──────────────────┬──────────────────┘
+                   │
+                   ▼
+        WebSocket (FastAPI)
+        receive_bytes() loop
+                   │
+                   ▼
+         buffer (~9s window)
+                   │
+                   ▼
+      asyncio.create_task()
+       (non-blocking background)
+                   │
+                   ▼
+          Whisper (local)
+           transcript text
+                   │
+                   ▼
+       claim extractor (LLM)
+            claims[]
+                   │
+                   ▼
+      claim decomposer (LLM)
+           subclaims[]
+                   │
+                   ▼
+           Serper API
+       3 sources per subclaim
+                   │
+                   ▼
+       claim evaluator (LLM)
+   verdict + confidence + reasoning
+                   │
+                   ▼
+      parse_llm_response()
+       confidence capped ≤ 0.95
+                   │
+                   ▼
+   send_queue → websocket.send_text()
+          JSON back to client
+                   │
+                   ▼
+            Supabase
+transcripts → claims → subclaim_evaluations
