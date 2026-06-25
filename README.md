@@ -1,3 +1,5 @@
+**How it Works**
+
 Verity is A RAG fact-checking application that extracts verifiable claims from text and live audio, retrieves real evidence, and returns confidence-scored verdicts with citations.
 
 What it does
@@ -29,3 +31,42 @@ Evidence Retrieval: Serper API
 Backend: FastAPI
 Database: Supabase (Postgres)
 Real-time audio: WebSockets + MediaRecorder
+
+**Flow**
+
+chrome.tabCapture / getDisplayMedia
+        │ audio chunks (webm)
+        ▼
+WebSocket (FastAPI)
+        │ receive_bytes() in loop
+        ▼
+buffer chunks (~9s window)
+        │
+        ▼
+asyncio.create_task()
+   (background, non-blocking)
+        │
+        ▼
+Whisper (local)
+        │ transcript text
+        ▼
+claim extractor (OpenRouter LLM call)
+        │ claims[]
+        ▼
+claim decomposer (OpenRouter LLM call)
+        │ subclaims[]
+        ▼
+Serper API
+        │ 3 sources per subclaim
+        ▼
+claim evaluator (OpenRouter LLM call)
+        │ verdict + confidence + reasoning
+        ▼
+parse_llm_response()
+        │ cap confidence ≤ 0.95
+        ▼
+send_queue → websocket.send_text()
+        │ JSON back to client
+        ▼
+Supabase
+   transcripts → claims → subclaim_evaluations
