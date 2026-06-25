@@ -1,130 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>Verify</head>
-    <body>
-    <button id="start" type="button">Start Recording</button>
-    <button id="stop" type="button">Stop Recording</button>
-    <div id="recorded-transcript"></div>
-    <div id="eval-result"></div>
-    <script>
-        const startButton = document.getElementById('start');
-        const stopButton = document.getElementById('stop');
-        // maintain references to the WebSocket and MediaRecorder instances to stop em later
-        let keepAlive = true;
-        let activeSocket = null;
-        let activeMediaRecorder = null;
-        let activeMediaStream = null;
-        async function recordAudio() {
-                if (keepAlive) {
-                try {
-                    console.log('Requesting display media...');
-                    const stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
-                    activeMediaStream = stream;
-                    const socket = new WebSocket('ws://127.0.0.1:8000/ws');
-                    activeSocket = socket;
-                    console.log('Display media stream obtained:', stream);
-                    
-                    socket.onclose = (e) => {
-                        console.log('Socket closed — code:', e.code, 'reason:', e.reason, 'wasClean:', e.wasClean);
-                    }
-
-                    socket.onmessage = (e) => {
-                        console.log('Message from server:', e.data);
-                        const msg = JSON.parse(e.data);
-                        if (msg.status == "keep-alive ping") {
-                            return;
-                        }
-                        if (msg.transcription) {
-                            console.log('Transcription: ', msg.transcription);
-                            document.getElementById('recorded-transcript').innerText += msg.transcription + ' ';
-                        } else {
-                            console.log('Server message:', msg);
-                        }
-                        if (msg.final_transcript) {
-                            console.log('Final transcript received:', msg.final_transcript);
-                        }
-                        if (msg.eval_result) {
-                            const result = msg.eval_result;
-                            console.log('Evaluation result received:', result);
-                            const subclaimsHtml = result.subclaim_evaluations.map(sc => `
-                        <li>
-                            <strong>${sc.subclaim}</strong><br>
-                            Evaluation: ${sc.evaluation}<br>
-                            Confidence: ${sc.subclaim_confidence_score}
-                        </li>
-                        `).join("");
-
-                        document.getElementById("eval-result").innerHTML = `
-                        <h3>Verdict: ${result.claim_evaluation}</h3>
-                        <p><strong>Confidence:</strong> ${result.confidence.toFixed(2)}</p>
-                        <p><strong>Reasoning:</strong> ${result.reasoning}</p>
-                        <p><strong>Source:</strong> 
-                            <a href="${result.key_source}" target="_blank">
-                                View Source
-                            </a>
-                        </p>
-
-                        <h4>Subclaim Analysis</h4>
-                        <ul>
-                            ${subclaimsHtml}
-                        </ul>
-                        `;
-                        }    
-                    }
-                    socket.onerror = (e) => {
-                        console.log('Socket error:', e);
-                    }
-
-                    socket.addEventListener('open', (e) => {
-                        const audioTracks = stream.getAudioTracks();
-                        console.log('Audio tracks:', audioTracks);
-                        if (audioTracks.length === 0) {
-                            console.error('No audio tracks found in the stream.');
-                            return;
-                        }
-                        const audioRecorder = new MediaStream(stream.getAudioTracks());
-                        const mediaRecorder = new MediaRecorder(audioRecorder, {mimeType: 'audio/webm;codecs=opus'});
-                        activeMediaRecorder = mediaRecorder;
-                        mediaRecorder.addEventListener('dataavailable', (e) => {
-                            if (e.data.size > 0 && socket.readyState === WebSocket.OPEN) {
-                                socket.send(e.data);
-                            }
-                        });
-                        mediaRecorder.start(2000);
-                    })
-                } catch (err) {
-                    console.error('Error accessing display media:', err);
-                }
-            }
-        }
-
-        startButton.addEventListener('click', async (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            await recordAudio();
-        })
-
-        stopButton.addEventListener('click', (e) => {
-            console.log('Stop button clicked. Stopping recording and closing resources...');
-            e.preventDefault();
-            e.stopPropagation();
-            keepAlive = false; 
-            if (activeMediaRecorder && activeMediaRecorder.state !== 'inactive') {
-                activeMediaRecorder.stop();
-            }
-            if (activeMediaStream) {
-                activeMediaStream.getTracks().forEach(track => track.stop()); // stop all tracks to release resources
-            }
-            if (activeSocket && activeSocket.readyState === WebSocket.OPEN) {
-
-                activeSocket.send(JSON.stringify({action: "stop"}));
-                
-                // console.log(msg.transcription);
-                // activeSocket.send(msg.transcription); // send the final transcript to the server for fact-checking
-                // activeSocket.close();
-            }
-        })
-        
-    </script>
-    </body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Verify — Live Fact-Checking</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
