@@ -27,7 +27,7 @@ async def call_llm(system: str, user: str) -> str:
             },
             json={
                 "model": "google/gemini-2.5-flash",
-                "max_tokens": 2000,
+                "max_tokens": 2500,
                 "response_format": {"type": "json_object"},
                 "messages": [
                     {"role": "system", "content": system},
@@ -35,7 +35,10 @@ async def call_llm(system: str, user: str) -> str:
                 ],
             },
         )
-    return parse_llm_response((request.json())["choices"][0]["message"]["content"])
+    # return parse_llm_response((request.json())["choices"][0]["message"]["content"])
+    resp = request.json()
+    # print(resp)  # see the actual error
+    return parse_llm_response(resp["choices"][0]["message"]["content"])
 
 def parse_llm_response(response: str) -> str:
     return (
@@ -72,8 +75,8 @@ async def evaluate_claim(content: str, transcript_id: int) -> dict:
     avg_confidence = average_confidence(eval_data)
 
     claim_id = generate_bigint_id()
-    store_claim_evaluation(claim_id, transcript_id, eval_data["claim_evaluation"], avg_confidence, eval_data["reasoning"])
-    store_subclaim_evaluations(eval_data["subclaim_evaluations"], claim_id, search_results)
+    # store_claim_evaluation(claim_id, transcript_id, eval_data["claim_evaluation"], avg_confidence, eval_data["reasoning"])
+    # store_subclaim_evaluations(eval_data["subclaim_evaluations"], claim_id, search_results)
 
     return_dict = {
         "claim_evaluation": eval_data["claim_evaluation"],
@@ -85,3 +88,7 @@ async def evaluate_claim(content: str, transcript_id: int) -> dict:
 
     return return_dict
 
+if __name__ == "__main__":
+    # evaluated_claim = asyncio.run(evaluate_claim("The Earth is flat.", 12345))
+    eval = asyncio.run(evaluate_claim("The Earth is flat.", generate_bigint_id()))
+    print(eval)
