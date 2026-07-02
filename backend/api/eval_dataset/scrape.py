@@ -5,12 +5,12 @@ from backend.api.database.load_db import supabase, generate_bigint_id
 
 def normalize_politifact_verdict(verdict: str) -> str:
     mapping = {
-        "true": "supported",
-        "mostly-true": "supported",
+        "true": "true",
+        "mostly-true": "true",
         "half-true": "mixed",
-        "barely-true": "contradicted",
-        "false": "contradicted",
-        "pants-fire": "contradicted"
+        "barely-true": "mixed",
+        "false": "false",
+        "pants-fire": "false"
     }
     return mapping.get(verdict.lower().replace(" ", "-"), "mixed")
 
