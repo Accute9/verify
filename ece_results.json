@@ -1,0 +1,1402 @@
+[
+    {
+        "eval_id": 892739901078546390,
+        "claim": "Republican U.S. Senate candidate Mike Collins \u201cadmitted\u201d that President Donald Trump is in the Epstein files.",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 800179820572451764,
+        "claim": "\"Today, Elon Musk, a trillionaire, pays the same amount into Social Security as someone making $184,500.\"",
+        "eval": "supported",
+        "predicted_eval": "true",
+        "confidence": 0.95
+    },
+    {
+        "eval_id": 6502451985442317571,
+        "claim": "A 20/30 vision score means \u201cpeople have to be at 20 feet to see\u201d things that \u201cI can see at 30 feet.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.8333333333333334
+    },
+    {
+        "eval_id": 1684095114256359803,
+        "claim": "Democratic candidate for U.S. Senate Graham Planter\u2019s \u201coyster business (is) totally fake.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.825
+    },
+    {
+        "eval_id": 3633547833100249057,
+        "claim": "\u201cMichelle Obama is a man.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 1.0
+    },
+    {
+        "eval_id": 270179380543169871,
+        "claim": "\u201cIf you live near one of these large data centers, your electricity bills over the last five years have gone up by as much as 267%.\"",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.66
+    },
+    {
+        "eval_id": 8911011820764898659,
+        "claim": "\u201cNo Republican wins in Nassau.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9333333333333332
+    },
+    {
+        "eval_id": 4620501392241075334,
+        "claim": "Sen. Susan Collins votes \u201cwith Donald Trump 95% of the time.\u201d",
+        "eval": "supported",
+        "predicted_eval": "inconclusive",
+        "confidence": 0.35
+    },
+    {
+        "eval_id": 3722847209877874430,
+        "claim": "The ongoing ballot counting in California means \u201cthey\u2019re cheating on the election.\"",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 4962340443682907655,
+        "claim": "Los Angeles mayoral candidate Spencer Pratt \u201cgot 0 out of 24,000 votes in a late night (Los Angeles) ballot drop.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.8333333333333334
+    },
+    {
+        "eval_id": 2887228138341115223,
+        "claim": "This video shows a June 2026 earthquake in the Philippines.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 7680356933773239191,
+        "claim": "This image shows a person stuffing ballots into a California ballot box.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 621267722439534189,
+        "claim": "Los Angeles mayoral candidate Nithya Raman had conceded the race as of June 7.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9333333333333332
+    },
+    {
+        "eval_id": 3584986094589355032,
+        "claim": "Iowa Democratic U.S. Senate candidate Josh Turek supports \u201csex changes for kids.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.7999999999999999
+    },
+    {
+        "eval_id": 8720936296552538539,
+        "claim": "\"The number of New Yorkers who consume cannabis daily or near daily is the same as the number of New Yorkers who buy coffee from a coffee shop daily or near daily \u2014 1.2-plus million people.\"",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.6
+    },
+    {
+        "eval_id": 3950147416399323451,
+        "claim": "\"Michigan has spent more than $2.5 billion on incentives to companies since 2019, and so far, that fund, the SOAR fund, has created zero jobs.\"",
+        "eval": "mixed",
+        "predicted_eval": "false",
+        "confidence": 0.8
+    },
+    {
+        "eval_id": 1364317904590741810,
+        "claim": "\u201cAdam Hoffman abused a little boy\u201d and Ken Paxton \u201clet Hoffman off the hook.\u201d",
+        "eval": "supported",
+        "predicted_eval": "true",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 9155655168119907943,
+        "claim": "Says his cognitive test results showed he has \u201cextreme intelligence.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.8300000000000001
+    },
+    {
+        "eval_id": 2337535480707098498,
+        "claim": "A video shows workers removing President Donald Trump\u2019s name from the Kennedy Center.",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.9666666666666667
+    },
+    {
+        "eval_id": 3692687221013521301,
+        "claim": "El presidente Donald Trump firm\u00f3 una ley para aumentar el salario m\u00ednimo a $25 la hora y entra en vigor el 1 de junio.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.8333333333333334
+    },
+    {
+        "eval_id": 239279031809844469,
+        "claim": "Democratic Texas U.S. Senate candidate James Talarico said the southern border should have \u201ca giant welcome mat out front.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.9333333333333332
+    },
+    {
+        "eval_id": 8037332369473054024,
+        "claim": "Democratic Texas U.S. Senate candidate James Talarico \u201cis a vegan.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 1754643934810972428,
+        "claim": "\u201cThe reason (people in Cuba) are forced to survive 22 hours a day without electricity is not due to an oil \u2018blockade\u2019 by the US.\u201d",
+        "eval": "mixed",
+        "predicted_eval": "mixed",
+        "confidence": 0.4666666666666666
+    },
+    {
+        "eval_id": 2229088008878171322,
+        "claim": "\u201cPresident Trump\u2019s tariffs are costing New York households an estimated $4,200 annually.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.825
+    },
+    {
+        "eval_id": 7856993116245729587,
+        "claim": "\"There's been numerous other occasions over the years\u201d when the federal government created a reserve similar to a new $1.776 billion anti-weaponization settlement fund.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 4429584025204564185,
+        "claim": "\u201cSan Diego mosque shooters identified as trans couple.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.925
+    },
+    {
+        "eval_id": 5888555422657619263,
+        "claim": "Video shows U.S. Rep. Byron Donalds saying, \u201cInsider trading should absolutely be allowed for members of Congress.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.7666666666666666
+    },
+    {
+        "eval_id": 8830823779733579341,
+        "claim": "An American passenger on the cruise ship involved in the hantavirus outbreak is a \"crisis actor.\"",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.7333333333333334
+    },
+    {
+        "eval_id": 89400036930593270,
+        "claim": "\u201cFlorida is the only state in the nation kicking children off their affordable health coverage.\u201d",
+        "eval": "supported",
+        "predicted_eval": "true",
+        "confidence": 0.8500000000000001
+    },
+    {
+        "eval_id": 5127643656989647509,
+        "claim": "In 2020, \u201cAmy Acton called off Ohio\u2019s election at the last minute.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 2887746228259398511,
+        "claim": "Im\u00e1genes muestran a personas \u201cinfectadas con Hantavirus\u201d.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.7999999999999999
+    },
+    {
+        "eval_id": 8123976185745482692,
+        "claim": "\u201cToday, there are more children sleeping in New York City\u2019s homeless shelters than there are seats in Yankee Stadium.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.6
+    },
+    {
+        "eval_id": 2384400919275152773,
+        "claim": "\u201cThe average IRS tax refund is up 11% compared to last year.\u201d",
+        "eval": "supported",
+        "predicted_eval": "true",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 368827410780823935,
+        "claim": "Gasoline prices have \u201ccome down very substantially today.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.8300000000000001
+    },
+    {
+        "eval_id": 7232942127471469759,
+        "claim": "Congress passed the 1965 Voting Rights Act because \u201cthe Democrat party at the time, especially in the South, were racially gerrymandering districts to disenfranchise Black voters.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.8
+    },
+    {
+        "eval_id": 4554711041766663152,
+        "claim": "Republicans \u201cwant you to pay $1 Billion for a ballroom.\u201d",
+        "eval": "supported",
+        "predicted_eval": "false",
+        "confidence": 0.7
+    },
+    {
+        "eval_id": 3589708066243912039,
+        "claim": "Proposed data centers in New York state would use \u201capproximately double the energy usage of all households in the state combined.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.7
+    },
+    {
+        "eval_id": 1031379647576941565,
+        "claim": "\u201cCalifornia only has \u2018enough\u2019 oil and gas supply to meet demand for the next six weeks.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 750363334539814782,
+        "claim": "\u201cConsumer confidence is way up.\"",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.85
+    },
+    {
+        "eval_id": 8286056134038037947,
+        "claim": "From January 2025 to January 2026, \u201chate crimes in New York City increased by 152%\u201d",
+        "eval": "supported",
+        "predicted_eval": "false",
+        "confidence": 0.7000000000000001
+    },
+    {
+        "eval_id": 1070247807685502018,
+        "claim": "\u201cUnder federal law, you cannot engage in partisan gerrymandering.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.8
+    },
+    {
+        "eval_id": 2729303278394187842,
+        "claim": "Florida school districts are the \u201cbiggest\u201d drivers of increased property taxes.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.65
+    },
+    {
+        "eval_id": 7528871567726257756,
+        "claim": "Imagen muestra que \u201c950 inmigrantes derrumbaron el muro fronterizo entre M\u00e9xico y Estados Unidos intentando ingresar a Estados Unidos\u201d en abril 2026.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 226899022612834236,
+        "claim": "\u201cAs a result of the 'Big Beautiful Bill' 15 million Americans have been thrown off the healthcare that they need.\"",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.95
+    },
+    {
+        "eval_id": 8470825997213672751,
+        "claim": "\u201cSecret Service remains unpaid\u201d during the partial government shutdown.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.6333333333333334
+    },
+    {
+        "eval_id": 1116122402744082913,
+        "claim": "\u201cGraham Platner blames Maine\u2019s women for getting raped because he says they get f----- up drunk\"",
+        "eval": "mixed",
+        "predicted_eval": "false",
+        "confidence": 0.825
+    },
+    {
+        "eval_id": 689542142620606582,
+        "claim": "Video shows \u201cunedited raw security footage\u201d of the shooter at the April 25 White House Correspondents\u2019 Association dinner.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.8
+    },
+    {
+        "eval_id": 7919176429247570165,
+        "claim": "\u201cWe are right now producing more oil than Saudi Arabia and Russia combined.\u201d",
+        "eval": "supported",
+        "predicted_eval": "true",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 6124371241619235380,
+        "claim": "Since the 2020 census, Florida has \"moved from a Democrat majority to a 1.5 million Republican advantage.\"",
+        "eval": "mixed",
+        "predicted_eval": "mixed",
+        "confidence": 0.7999999999999999
+    },
+    {
+        "eval_id": 6686142894258103951,
+        "claim": "\u201cTras el atentado a Trump\u201d, en la cena de corresponsales de la Casa Blanca el 25 de abril, \u201cIr\u00e1n lanza un mensaje fuerte: \u2018no le crean nada, miente\u2019\u201d.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.8400000000000001
+    },
+    {
+        "eval_id": 8254644655998411656,
+        "claim": "U.S. Rep. Byron Donalds voted \"against three pay raises for military service members, including the largest pay raise for the military in 22 years.\"",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 8473279294266451215,
+        "claim": "\"There's two ways of calculating percentage\" decreases. \u201cIf you have a $600 drug and you reduce it to $10, that's a 600% reduction.\"",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9333333333333332
+    },
+    {
+        "eval_id": 3094698519659160976,
+        "claim": "\u201cWith one dose of ibogaine, more than 80% of people are free of (opioid) addiction. With two doses, it's more than 90%.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.4000000000000001
+    },
+    {
+        "eval_id": 8657119308637316603,
+        "claim": "\u201cNewly released FOIA door logs show that former President Joe Biden didn't enter the Oval Office once after the 2024 election.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.7999999999999999
+    },
+    {
+        "eval_id": 1620322589257605311,
+        "claim": "Solar and wind have not reached \u201c3% of global energy.\u201d",
+        "eval": "mixed",
+        "predicted_eval": "false",
+        "confidence": 0.8333333333333334
+    },
+    {
+        "eval_id": 7223643485196855032,
+        "claim": "Video shows President Donald Trump at the Walter Reed National Military Medical Center.",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.9333333333333332
+    },
+    {
+        "eval_id": 57838447328076979,
+        "claim": "President Donald Trump's proposed 2027 military budget would be \"the largest spending increase since World War II.\u201d",
+        "eval": "supported",
+        "predicted_eval": "inconclusive",
+        "confidence": 0.5333333333333333
+    },
+    {
+        "eval_id": 4845870212703264987,
+        "claim": "Video shows the United States\u2019 April 19, 2026, strike on an Iranian cargo ship.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.85
+    },
+    {
+        "eval_id": 4823756926341883207,
+        "claim": "\u201c83% of us favor requiring a photo ID to vote. In fact, most of the civilized world requires it but not us.\u201d",
+        "eval": "mixed",
+        "predicted_eval": "mixed",
+        "confidence": 0.7999999999999999
+    },
+    {
+        "eval_id": 1259799118782636854,
+        "claim": "El papa Le\u00f3n XIV \"pide destituir a Donald Trump\".",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 7259493760245932940,
+        "claim": "\u201cThom Tillis is no longer a senator.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 1.0
+    },
+    {
+        "eval_id": 1583778949717172649,
+        "claim": "The U.S. Navy was created \"to free international waters from the Barbary pirates.\"",
+        "eval": "supported",
+        "predicted_eval": "true",
+        "confidence": 0.9333333333333332
+    },
+    {
+        "eval_id": 6004104827418453007,
+        "claim": "\u201cThe Dignity Act is mass amnesty.\u201d",
+        "eval": "mixed",
+        "predicted_eval": "mixed",
+        "confidence": 0.8
+    },
+    {
+        "eval_id": 8832845017929819063,
+        "claim": "Pope Leo XIV \u201cthinks it\u2019s OK for Iran to have a nuclear weapon.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9333333333333332
+    },
+    {
+        "eval_id": 1738307742978549291,
+        "claim": "\u201cMoulton voted with Republicans to thank ICE for protecting our homeland. He thanked ICE as they were terrorizing our communities and killed citizens in broad daylight.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.8
+    },
+    {
+        "eval_id": 3844459023012504401,
+        "claim": "Photos and clips show the moon from Artemis II.",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.9666666666666667
+    },
+    {
+        "eval_id": 1862779930969908569,
+        "claim": "Video shows a US soldier crying and saying she misses home and her family.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.5
+    },
+    {
+        "eval_id": 6744132072081237252,
+        "claim": "Photos show rescues of U.S. F-15 airmen from Iran in April 2026.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.8333333333333334
+    },
+    {
+        "eval_id": 3349433616065800086,
+        "claim": "As Nassau County Executive, I hired 600 new law enforcement officers and made Nassau the safest county in America.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.5
+    },
+    {
+        "eval_id": 8996847188179723089,
+        "claim": "\"Bombing civilian power infrastructure is a war crime.\u201d",
+        "eval": "supported",
+        "predicted_eval": "true",
+        "confidence": 0.9333333333333332
+    },
+    {
+        "eval_id": 1467154499514474966,
+        "claim": "New York leads the nation in population loss.",
+        "eval": "mixed",
+        "predicted_eval": "mixed",
+        "confidence": 0.6
+    },
+    {
+        "eval_id": 67646537263096606,
+        "claim": "\u201cWe've had regime change.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.8
+    },
+    {
+        "eval_id": 3072203854750459569,
+        "claim": "Milk prices \u201ccurrently are no higher than they were in 1980\u2019s.\u201d",
+        "eval": "supported",
+        "predicted_eval": "false",
+        "confidence": 0.8000000000000002
+    },
+    {
+        "eval_id": 7109964695853539454,
+        "claim": "\u201cMore Americans are working today than at any time in the history of our country.\u201d",
+        "eval": "mixed",
+        "predicted_eval": "mixed",
+        "confidence": 0.8
+    },
+    {
+        "eval_id": 4218384837275853521,
+        "claim": "Video shows ICE agent removing \u201cUS citizen on a plane for being Latino.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.75
+    },
+    {
+        "eval_id": 8555353962105317280,
+        "claim": "Image shows President Donald Trump asked Florida Gov. Ron DeSantis on Truth Social to pardon Tiger Woods following a DUI charge.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.96
+    },
+    {
+        "eval_id": 4930862190119723038,
+        "claim": "\"Mail-in voting means mail-in cheating.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.8333333333333334
+    },
+    {
+        "eval_id": 5676181150479393226,
+        "claim": "The SAVE America Act \u201crequires everyone to re-register to vote in person and your driver\u2019s license, REAL ID, or military ID aren\u2019t even good enough.\u201d",
+        "eval": "mixed",
+        "predicted_eval": "mixed",
+        "confidence": 0.65
+    },
+    {
+        "eval_id": 4448901149142426805,
+        "claim": "Video shows Israelis fleeing to Cyprus.",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.8333333333333334
+    },
+    {
+        "eval_id": 4045446887884169294,
+        "claim": "\"Youth underemployment for college grads is 70%\" nationwide.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.85
+    },
+    {
+        "eval_id": 6717951821582444103,
+        "claim": "\u201c9% of American citizens don't have the identification that the SAVE act requires to vote. Almost 1 in 10.\u201d",
+        "eval": "supported",
+        "predicted_eval": "true",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 3450761885027214457,
+        "claim": "\u201cYou can't shovel snow in New York City without an ID.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.8500000000000001
+    },
+    {
+        "eval_id": 1110001716333257974,
+        "claim": "\u201cIn the modern era, no American president has ordered more military strikes against as many different countries as Donald Trump.\u201d",
+        "eval": "supported",
+        "predicted_eval": "mixed",
+        "confidence": 0.6000000000000001
+    },
+    {
+        "eval_id": 3985167085658875400,
+        "claim": "The SAVE America Act \u201cwould force Americans to register (to vote) only in person, something only 5% of Americans do today.\"",
+        "eval": "mixed",
+        "predicted_eval": "false",
+        "confidence": 0.6000000000000001
+    },
+    {
+        "eval_id": 2789687163637801843,
+        "claim": "Video shows toddler crying over casket of American service member killed in Iran.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.825
+    },
+    {
+        "eval_id": 8719170714089334059,
+        "claim": "An AI video is proof that Israeli Prime Minister Benjamin Netanyahu is dead.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.96
+    },
+    {
+        "eval_id": 4761830768517424652,
+        "claim": "The U.S. produces \u201cmore oil than we can consume. We\u2019re a net oil exporter.\u201d",
+        "eval": "mixed",
+        "predicted_eval": "false",
+        "confidence": 0.8666666666666667
+    },
+    {
+        "eval_id": 8039287979938423519,
+        "claim": "El l\u00edder de Corea del Norte Kim Jong Un dijo que \u201cning\u00fan Dios podr\u00e1 proteger a Estados Unidos de nuestras nuevas armas\u201d.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.8333333333333334
+    },
+    {
+        "eval_id": 7874533731351536723,
+        "claim": "\"BREAKING: So the Israeli media reports Itamar Ben\u2011Gvir died in a 'car crash,' while in fact he\u2019s been obliterated by an Iranian missile strike on his home.\"",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 4256626470835626482,
+        "claim": "Iran \u201calso has some Tomahawks.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.95
+    },
+    {
+        "eval_id": 5848461494096077577,
+        "claim": "El Presidente de El Salvador Nayib Bukele dijo, \u201ccon las guerras que ha empezado Donald Trump les pido a todos los inmigrantes en Estados Unidos que piensen en salir de ese pa\u00eds\u201d.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.825
+    },
+    {
+        "eval_id": 3214844337599358214,
+        "claim": "\u201cEl r\u00e9gimen de Ir\u00e1n ha confesado que (el Cuerpo de la Guardia Revolucionaria Isl\u00e1mica) bombarde\u00f3 por error\u2026 una escuela iran\u00ed\u201d el 28 de febrero.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.85
+    },
+    {
+        "eval_id": 1899304783520047732,
+        "claim": "Iran released a list of U.S. cities it will target.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 1345040934222209706,
+        "claim": "The Biden administration \"reversed\" a policy of deporting people in the country illegally who have committed felonies.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.65
+    },
+    {
+        "eval_id": 9146516711136469914,
+        "claim": "The 2015 Iran nuclear agreement \u201cgave (Iran) the right to have top-of-the-line nuclear weapons.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.7999999999999999
+    },
+    {
+        "eval_id": 985696507459608735,
+        "claim": "Artificial intelligence data centers \"drive up electric bills by 30 or 40%\" and \"suck up 500,000 gallons of water a day.\u201d",
+        "eval": "mixed",
+        "predicted_eval": "mixed",
+        "confidence": 0.95
+    },
+    {
+        "eval_id": 3785787782157805278,
+        "claim": "Video shows a US air base in Riyadh, Saudi Arabia, being destroyed by Iran.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.775
+    },
+    {
+        "eval_id": 8332242992100942782,
+        "claim": "On the US seeking regime change",
+        "eval": "mixed",
+        "predicted_eval": "true",
+        "confidence": 0.9666666666666667
+    },
+    {
+        "eval_id": 6930871189458658454,
+        "claim": "NC state Sen. Phil Berger, R-Rockingham, \u201ckilled a bill banning sex-change surgeries for minors.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "inconclusive",
+        "confidence": 0.6
+    },
+    {
+        "eval_id": 1757191583599600136,
+        "claim": "\u201cThere is no history \u2026 that shows an air campaign alone will result in positive regime change. In fact, there's not a single example of it in the entirety of American history.\u201d",
+        "eval": "supported",
+        "predicted_eval": "true",
+        "confidence": 0.86
+    },
+    {
+        "eval_id": 675276635205674753,
+        "claim": "\u201cThe regime in Iran has now confessed that the (Islamic Revolutionary Guard Corps) mistakenly bombed an Iranian school yesterday.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.825
+    },
+    {
+        "eval_id": 5997645318763585624,
+        "claim": "\u201cIsraeli shooter opened fire inside an Austin (Texas) bar\u201d on March 1, 2026.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.8800000000000001
+    },
+    {
+        "eval_id": 2199421615038079261,
+        "claim": "Videos show Iranian missiles struck and damaged the USS Abraham Lincoln aircraft carrier.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.8500000000000001
+    },
+    {
+        "eval_id": 4071532306866217341,
+        "claim": "U.S. men\u2019s hockey Olympian Brady Tkachuk said about the Canadian hockey team, \u201cThey booed our national anthem, so I had to come out and teach those maple syrup eating f----s a lesson.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 6146523906927633499,
+        "claim": "An Instagram video shows a New York City man sculpting a car out of snow.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.7999999999999999
+    },
+    {
+        "eval_id": 2488338277825421579,
+        "claim": "An audio clip reveals a Jeffrey Epstein victim\u2019s account of abuse by the Clintons.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.6
+    },
+    {
+        "eval_id": 8459317385615845018,
+        "claim": "President Donald Trump\u2019s tariff policies \u201chave forced American families to pay more than $1,700 each in tariff costs\u201d since last year.",
+        "eval": "supported",
+        "predicted_eval": "mixed",
+        "confidence": 0.7999999999999999
+    },
+    {
+        "eval_id": 1924173805887398401,
+        "claim": "Says Sam Page \u201cgot busted calling Trump\u2019s (immigration) plan unrealistic.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 1067858074357998939,
+        "claim": "\u201cNearly 27% of all homes sold in the first quarter of 2025 were bought by investors.\u201d",
+        "eval": "mixed",
+        "predicted_eval": "true",
+        "confidence": 0.9666666666666667
+    },
+    {
+        "eval_id": 4334663794945271116,
+        "claim": "Imagen muestra a Puerto Vallarta, M\u00e9xico, despu\u00e9s de la muerte de Nemesio \u201cEl Mencho\u201d Oseguera Cervantes, el l\u00edder del C\u00e1rtel Jalisco Nueva Generaci\u00f3n.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.8125
+    },
+    {
+        "eval_id": 2710673934269294136,
+        "claim": "After U.S. vessel strikes in the Caribbean Sea and Pacific Ocean, \u201cdrugs entering our country by sea are down 97%.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.7999999999999999
+    },
+    {
+        "eval_id": 7234360203348551124,
+        "claim": "Image shows Puerto Vallarta, Mexico, after the killing of Nemesio \u201cEl Mencho\u201d Oseguera Cervantes, the head of Jalisco New Generation Cartel.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.85
+    },
+    {
+        "eval_id": 3083889679032852842,
+        "claim": "Says \u201c90% of health care spending treats chronic disease.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 1.0
+    },
+    {
+        "eval_id": 5082008510090649978,
+        "claim": "New York ranks No. 1 in the nation for individual tax burden.",
+        "eval": "supported",
+        "predicted_eval": "true",
+        "confidence": 0.95
+    },
+    {
+        "eval_id": 6246394805833310705,
+        "claim": "The Epstein files \u201cexpose Ellen DeGeneres\u201d as a cannibal.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9333333333333332
+    },
+    {
+        "eval_id": 8436225845157570203,
+        "claim": "Savannah Guthrie's husband\u2019s company is listed as a \"co conspirator\" in the Epstein files, \u201cin case you're wondering why now of all times for (her) mother to be 'kidnapped.'\"",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.8
+    },
+    {
+        "eval_id": 4072257908954244827,
+        "claim": "Crime in Minneapolis \u201cis down 25, 30% because we\u2019ve removed thousands of criminals from the area.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "inconclusive",
+        "confidence": 0.5
+    },
+    {
+        "eval_id": 3737437659931453027,
+        "claim": "\u201cNew Yorkers pay 49% more than the national average for electricity.\u201d",
+        "eval": "supported",
+        "predicted_eval": "true",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 664494194828552122,
+        "claim": "Said she has led the House effort to build a large Micron semiconductor facility near Syracuse.",
+        "eval": "mixed",
+        "predicted_eval": "inconclusive",
+        "confidence": 0.6666666666666666
+    },
+    {
+        "eval_id": 2446348145276299258,
+        "claim": "\"The crime rate now is the lowest it's been since 1900. That's 125 years.\"",
+        "eval": "mixed",
+        "predicted_eval": "mixed",
+        "confidence": 0.8
+    },
+    {
+        "eval_id": 4408358873271641120,
+        "claim": "\u201cDurante su presentaci\u00f3n en el Super Bowl, Bad Bunny le regal\u00f3 su premio Grammy a Liam Conejo Ramos\u201d, el ni\u00f1o de 5 a\u00f1os que fue detenido por ICE.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.82
+    },
+    {
+        "eval_id": 6464916600463238005,
+        "claim": "An image shows Bad Bunny wearing a dress and burning the U.S. flag.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 6173637503573762457,
+        "claim": "\u201cWe right now have more factories and plants being built in our country than we've ever had before.\u201d",
+        "eval": "mixed",
+        "predicted_eval": "mixed",
+        "confidence": 0.6499999999999999
+    },
+    {
+        "eval_id": 7188285563568726168,
+        "claim": "During the Super Bowl halftime show, \u201cBad Bunny brought Liam Conejo Ramos onto the stage,\u201d the 5-year-old detained by Immigration and Customs Enforcement in Minneapolis.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.9500000000000001
+    },
+    {
+        "eval_id": 2169787218970517794,
+        "claim": "An image shows Jeffrey Epstein \u201cstill alive and walking the streets of Tel Aviv,\u201d Israel.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.95
+    },
+    {
+        "eval_id": 2462234029314450034,
+        "claim": "Under Michigan Gov. Gretchen Whitmer, there are \u201cfewer families living in poverty\u201d than under her predecessor.",
+        "eval": "mixed",
+        "predicted_eval": "mixed",
+        "confidence": 0.625
+    },
+    {
+        "eval_id": 8775573945989701996,
+        "claim": "Among Somalis in Minnesota, \u201c92% of them don\u2019t work.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 9108105416071226408,
+        "claim": "Images show New York City Mayor Zohran Mamdani as a child with his mother, Mira Nair, and Jeffrey Epstein.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 1.0
+    },
+    {
+        "eval_id": 2189096926794556387,
+        "claim": "In artificial intelligence, \u201cWe're leading China by a lot.\u201d",
+        "eval": "mixed",
+        "predicted_eval": "mixed",
+        "confidence": 0.6
+    },
+    {
+        "eval_id": 3419666545729642692,
+        "claim": "The Federal Emergency Management Agency\u2019s \u201cbacklog of unanswered disaster assistance applications has exploded to the largest in its history.\u201d",
+        "eval": "supported",
+        "predicted_eval": "true",
+        "confidence": 0.8333333333333334
+    },
+    {
+        "eval_id": 7381182419796402786,
+        "claim": "\"Right now we're focused on Minneapolis because that's where we have the highest concentration of people who have violated our immigration laws.\"",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.6000000000000001
+    },
+    {
+        "eval_id": 6890231489404084987,
+        "claim": "An image shows Alex Pretti holding a gun, not a phone, while pinned by federal immigration agents in Minneapolis.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 8391659664847578282,
+        "claim": "\u201cYou cannot bring a firearm loaded with multiple magazines to any sort of protest that you want. It\u2019s that simple.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.7999999999999999
+    },
+    {
+        "eval_id": 8958973876376643221,
+        "claim": "Protesters against the federal immigration crackdown in Minnesota are conducting \u201cfake protests done by agitators and professional insurrectionists. \u2026They're professional troublemakers.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.825
+    },
+    {
+        "eval_id": 7038724943999706533,
+        "claim": "Trees can explode if temperatures drop to 20 degrees below zero.",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.9333333333333332
+    },
+    {
+        "eval_id": 2066620513960469706,
+        "claim": "Evan Kilgore is one of the Border Patrol agents who shot Alex Pretti in Minneapolis.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.8333333333333334
+    },
+    {
+        "eval_id": 4595964980988125594,
+        "claim": "Donald Trump posted on Truth Social, \u201cOnly criminals carry guns on our streets, we need law and order.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.6
+    },
+    {
+        "eval_id": 2053096881560069658,
+        "claim": "\u201cTrump\u2019s $2,000 tariff dividend is live but you must act.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 1455429351908681647,
+        "claim": "Video showing a vacant lot at a Venice, California, address where 26 voters were registered exposes voter fraud.",
+        "eval": "contradicted",
+        "predicted_eval": "inconclusive",
+        "confidence": 0.53325
+    },
+    {
+        "eval_id": 7196808922004889745,
+        "claim": "The former U.S. childhood vaccine schedule called for babies to get \u201c72 injections.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.7999999999999999
+    },
+    {
+        "eval_id": 8562452792818378569,
+        "claim": "\u201cNo est\u00e1n recibiendo el entrenamiento tradicional de cinco meses\u2026 .El entrenamiento para los agentes de ICE ahora es de 47 d\u00edas\u201d.",
+        "eval": "supported",
+        "predicted_eval": "false",
+        "confidence": 0.6
+    },
+    {
+        "eval_id": 3777366963261613386,
+        "claim": "A letter sent to postal service employees about working during emergencies such as civil unrest is a sign that President Donald Trump will impose martial law.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 872710386458600651,
+        "claim": "\u201cBy federal law, if you sign someone up for Medicaid, you also give them the right to vote. \u2026 This is political patronage at the expense of Medicaid.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.6333333333333333
+    },
+    {
+        "eval_id": 1425637169519927864,
+        "claim": "\"If we stop this fraud, this massive fraud, we're going to have a balanced budget.\"",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 7548981979012965037,
+        "claim": "A document shows Minnesota shooting victim Renee Good had a record of child abuse.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.6
+    },
+    {
+        "eval_id": 8934289744498828451,
+        "claim": "Credit card companies would be \u201cin violation of the law\u201d if they don\u2019t cap interest rates at 10% by Jan. 20.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.8333333333333334
+    },
+    {
+        "eval_id": 7700717093042430661,
+        "claim": "\u201cThey are not getting the traditional five months training. \u2026 The training for the ICE agents now is 47 days.\u201d",
+        "eval": "supported",
+        "predicted_eval": "false",
+        "confidence": 0.8333333333333334
+    },
+    {
+        "eval_id": 5841001255613997726,
+        "claim": "Images of an unmasked man show the immigration officer who shot a woman in Minneapolis.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.8333333333333334
+    },
+    {
+        "eval_id": 1274777043349873675,
+        "claim": "Viral photo shows the woman killed by an ICE agent Jan. 7 in Minneapolis.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.65
+    },
+    {
+        "eval_id": 2486161583859704892,
+        "claim": "The Justice Department has been investigating fraud in Minnesota \u201cfor months. So far, we have charged 98 individuals.\u201d",
+        "eval": "mixed",
+        "predicted_eval": "true",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 8472083582859715464,
+        "claim": "Maduro was \u201cflooding America with deadly fentanyl.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.5333333333333333
+    },
+    {
+        "eval_id": 6308868522835026000,
+        "claim": "Venezuelan leader Nicol\u00e1s Maduro \u201cwas releasing people from his prisons and sending them to our southern border under the Biden administration.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.8800000000000001
+    },
+    {
+        "eval_id": 1047229812824254331,
+        "claim": "Video shows \u201cleaked Donald Trump audio about the Epstein files and Venezuela.\"",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.5333333333333333
+    },
+    {
+        "eval_id": 257172998514090511,
+        "claim": "Gov. Tim Walz had Democratic lawmaker Melissa Hortman killed.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.95
+    },
+    {
+        "eval_id": 8485848528109610907,
+        "claim": "Video shows \u201cmillions of Venezuelans flooded the streets of Caracas\u201d to celebrate Nicol\u00e1s Maduro\u2019s capture.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.6
+    },
+    {
+        "eval_id": 6496632777525666273,
+        "claim": "Images and videos show aftermath of Venezuelan President Nicol\u00e1s Maduro\u2019s capture.",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.76
+    },
+    {
+        "eval_id": 727174582887916852,
+        "claim": "Brown University student Mustapha Karbouch was a suspect in school shooting.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.6
+    },
+    {
+        "eval_id": 8510149638393962929,
+        "claim": "Images from Jeffrey Epstein \u201carchives\u201d show President Donald Trump and Epstein with young women.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.8
+    },
+    {
+        "eval_id": 4507709959455122703,
+        "claim": "Image shows Rob Reiner tweeted in 2023 that he would stop posting until \u201cTrump goes to prison.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.975
+    },
+    {
+        "eval_id": 5447456751992283267,
+        "claim": "Gov. Kathy Hochul has raised taxes.",
+        "eval": "mixed",
+        "predicted_eval": "mixed",
+        "confidence": 0.5333333333333333
+    },
+    {
+        "eval_id": 8473645133210363203,
+        "claim": "The U.S. has received promises of investments totaling $18 trillion to $22 trillion since January.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.7999999999999999
+    },
+    {
+        "eval_id": 876139931998758537,
+        "claim": "\u201cI take responsibility for putting people in jail\u201d in Minnesota fraud scandal.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.5333333333333333
+    },
+    {
+        "eval_id": 8278903783295165710,
+        "claim": "Video shows \u201cNo Kings\u201d protest in the United Kingdom.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.6
+    },
+    {
+        "eval_id": 5029538033026802238,
+        "claim": "Video muestra noticia de \u201c\u00faltima hora\u201d en el que el presidente venezolano Nicol\u00e1s Maduro se \u201crindi\u00f3 p\u00fablicamente\u201d ante el presidente Donald Trump.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.7999999999999999
+    },
+    {
+        "eval_id": 3940430205272596818,
+        "claim": "Any pardon signed with an autopen is now \"fully and completely terminated, and is of no legal effect.\"",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 6246823261882065484,
+        "claim": "A new North Carolina law \u201cprohibits the use of wireless communication devices while driving.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.6
+    },
+    {
+        "eval_id": 3201985772179563792,
+        "claim": "Video shows \u201cbreaking\u201d news that Venezuelan President Nicol\u00e1s Maduro \"publicly surrendered\" to President Donald Trump.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.95
+    },
+    {
+        "eval_id": 4336268620083241387,
+        "claim": "\u201cThis Thanksgiving, turkey prices are at their lowest point since 2000.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.7
+    },
+    {
+        "eval_id": 4268097180074451684,
+        "claim": "The Trump administration removed nursing from the list of professional degree programs, affecting aspiring nurses\u2019 student loan access.",
+        "eval": "mixed",
+        "predicted_eval": "mixed",
+        "confidence": 0.8
+    },
+    {
+        "eval_id": 2152582109474202021,
+        "claim": "\u201cI have just gotten the highest poll numbers of my \u2018political career.\u2019\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 6835917887490204792,
+        "claim": "\u201cThere\u2019s about 1,400 criminal illegal aliens that, right now, are in North Carolina and Charlotte\u2019s jails that they refuse to turn over to ICE law enforcement.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.9333333333333332
+    },
+    {
+        "eval_id": 5620797840716702513,
+        "claim": "West Virginia is \u201cthe only state losing population.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.8500000000000001
+    },
+    {
+        "eval_id": 3055594986517931596,
+        "claim": "A pro-Donald Trump Montana town planned a \u201cpedophile bonfire\u201d in a park for burning Trump flags and MAGA hats.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.82
+    },
+    {
+        "eval_id": 687919910026781319,
+        "claim": "\u201cWe\u2019re not cutting science. We\u2019re not cutting research.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.95
+    },
+    {
+        "eval_id": 425157633918084626,
+        "claim": "Housing is expensive \u201cbecause we flooded the country with 30 million illegal immigrants\u201d and because of a housing shortage.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.8333333333333334
+    },
+    {
+        "eval_id": 473799571271426048,
+        "claim": "Stock prices for health insurance companies are \u201cup over 1,000% over a short period of time.\u201d",
+        "eval": "mixed",
+        "predicted_eval": "mixed",
+        "confidence": 0.6
+    },
+    {
+        "eval_id": 5278599513383609419,
+        "claim": "Video shows President Donald Trump patting President Bill Clinton\u2019s crotch.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 1.0
+    },
+    {
+        "eval_id": 3119017500044468546,
+        "claim": "\u201cEvidence suggests that 1 in 25 women who consume (abortion) pills are hospitalized.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 2604681008108020529,
+        "claim": "\u201cMy tariffs \u2026 are helping to slash the deficit this year by more than 25%.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.6
+    },
+    {
+        "eval_id": 411935714192695659,
+        "claim": "Walmart\u2019s 2025 package of Thanksgiving dinner ingredients shows a \u201c25% reduction in costs for Thanksgiving between (President Joe) Biden and me.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.45
+    },
+    {
+        "eval_id": 4500644301192831257,
+        "claim": "\u201cDOGE halts yearly payment of $2.5 million to Barack Obama for \u2018royalties linked to Obamacare.\u2019\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.8
+    },
+    {
+        "eval_id": 3636521669119910212,
+        "claim": "\u201cNorth Carolina teachers are already the lowest paid teachers in the south.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 5535722888563138766,
+        "claim": "\u201cRFK Jr. flees the scene after Novo Nordisk Executive Gordon Findlay collapsed in the Oval Office.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.825
+    },
+    {
+        "eval_id": 1090634105680437314,
+        "claim": "New York City Mayor-elect Zohran Mamdani \u201cis bringing Sharia law to America.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.7999999999999999
+    },
+    {
+        "eval_id": 1021830319435424211,
+        "claim": "Voting in California is \u201crigged.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.5
+    },
+    {
+        "eval_id": 2977623870998258503,
+        "claim": "New York state has \"no ID requirement\" to vote, and people could lie about their address and \"vote in multiple precincts.\"",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.6333333333333333
+    },
+    {
+        "eval_id": 1292897741518185138,
+        "claim": "\u201cThe New York City ballot form is a scam\u201d because \u201cmayoral candidates appear twice.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.7999999999999999
+    },
+    {
+        "eval_id": 6781832913238303038,
+        "claim": "The federal government \u201cdecided to shut down the SNAP machines, so that they can\u2019t be used.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 2191255041517430415,
+        "claim": "The majority of Supplemental Nutrition Assistance Program recipients are not U.S. citizens.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.4
+    },
+    {
+        "eval_id": 8257158524444649394,
+        "claim": "\u201cNo American citizens have been arrested or detained\u201d during the Trump administration\u2019s immigration crackdowns.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 1.0
+    },
+    {
+        "eval_id": 7661279690299844169,
+        "claim": "In Florida, \u201c68 to 70% of property tax revenue\u201d is from \u201csecond homes, investment properties, commercial properties, Airbnb,\u201d not primary residences.",
+        "eval": "supported",
+        "predicted_eval": "false",
+        "confidence": 0.5833333333333334
+    },
+    {
+        "eval_id": 3917942959657952453,
+        "claim": "\u201cTo all ICE officers, you have federal immunity in the conduct of your duties.\u201d",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.7333333333333334
+    },
+    {
+        "eval_id": 4952061413583463320,
+        "claim": "Walmart will close to in-store shoppers and allow only online orders and curbside pickup starting Nov. 1 because of an expected Supplemental Nutrition Assistance Program funding lapse.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 5029096723301410575,
+        "claim": "\"Overall, the inflation since President Trump\u201d took office \u201chas come down.\"",
+        "eval": "mixed",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 1233955163773478325,
+        "claim": "Video shows Hurricane Melissa hitting Jamaica on Oct. 26, 2025.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.8666666666666667
+    },
+    {
+        "eval_id": 6573168563062678774,
+        "claim": "An ad from the government of Ontario, Canada, \u201cmisrepresents\u201d President Ronald Reagan\u2019s April 25, 1987, address about tariffs.",
+        "eval": "contradicted",
+        "predicted_eval": "true",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 4861991029112481170,
+        "claim": "\u201cThe Trump administration just declared that erecting a ballroom is the president\u2019s main priority,\u201d rather than issues such as the cost of living and health care.",
+        "eval": "contradicted",
+        "predicted_eval": "mixed",
+        "confidence": 0.8333333333333334
+    },
+    {
+        "eval_id": 3296376500470555308,
+        "claim": "Con respecto a los ataques contra las embarcaciones en las costas de Venezuela, \u201cpor cada barco que destruimos, salvamos 25,000 vidas estadounidenses\u201d.",
+        "eval": "contradicted",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 5528827883279886289,
+        "claim": "A new White House ballroom \u201cwon't interfere with the current building.\u201d",
+        "eval": "mixed",
+        "predicted_eval": "false",
+        "confidence": 0.9
+    },
+    {
+        "eval_id": 7887276436097704256,
+        "claim": "\u201cAbout 25% of the time the Coast Guard boards a ship, there are no drugs.\u201d",
+        "eval": "supported",
+        "predicted_eval": "inconclusive",
+        "confidence": 0.4000000000000001
+    }
+]

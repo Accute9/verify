@@ -31,10 +31,11 @@ def store_subclaim_evaluations(subclaim_evaluations: list, claim_id: int, search
             "source_title": top_result.get("title"),
         }).execute()
 
-def store_claim_evaluation(claim_id: int, transcript_id: int, overall_verdict: str, overall_confidence: float, reasoning: str):
+def store_claim_evaluation(claim_id: int, overall_verdict: str, overall_confidence: float, reasoning: str, transcript_id: int = None, eval_id: int = None):
     supabase.table("claim_evaluation").insert({
         "claim_id": claim_id,
         "transcript_id": transcript_id,
+        "eval_id": eval_id,
         "overall_verdict": overall_verdict,
         "overall_confidence": overall_confidence,
         "reasoning": reasoning,
