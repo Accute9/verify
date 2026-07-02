@@ -29,9 +29,7 @@ async def compute_ece():
 
 
 def is_correct(item):
-    # inconclusive predictions never count as correct since no ground-truth label matches it
-    match = {"true": "supported", "false": "contradicted", "mixed": "mixed"}
-    return match.get(item["predicted_eval"]) == item["eval"]
+    return item["predicted_eval"] == item["eval"]
 
 
 def compute_ece_from_results(results, num_bins=10):
@@ -58,6 +56,23 @@ def compute_ece_from_results(results, num_bins=10):
         })
     return ece, bin_stats
 
+def reliability_breakdown(results, n_buckets=10):
+    buckets = [[] for _ in range(n_buckets)]
+    for r in results:
+        idx = min(int(r["confidence"] * n_buckets), n_buckets - 1)
+        correct = r["predicted_eval"] == r["eval"]
+        buckets[idx].append(correct)
+    
+    print(f"{'Bucket':<12} {'Predicted':>12} {'Actual':>10} {'Count':>8} {'Gap':>8}")
+    print("-" * 52)
+    for i, bucket in enumerate(buckets):
+        if not bucket:
+            continue
+        mid = (i + 0.5) / n_buckets
+        acc = sum(bucket) / len(bucket)
+        gap = mid - acc
+        print(f"{i/n_buckets:.0%}–{(i+1)/n_buckets:.0%}   {mid:>12.2f} {acc:>10.2f} {len(bucket):>8} {gap:>+8.2f}")
+
 
 if __name__ == "__main__":
     # results = asyncio.run(compute_ece())
@@ -72,4 +87,8 @@ if __name__ == "__main__":
             f"{stat['bin']:>14}  n={stat['count']:>4}  "
             f"acc={stat['accuracy']:.3f}  conf={stat['avg_confidence']:.3f}"
         )
-    supabase.table("ece_values").insert({"ece_score": ece, "prompt_version": "v1", "notes": "Baseline, no calibration applied"}).execute()
+    # supabase.table("ece_values").insert({"ece_score": ece, "prompt_version": "v1", "notes": "Baseline, no calibration applied"}).execute()
+    reliability_breakdown(d)
+    # print a sample to inspect
+    for r in d[:10]:
+        print(f"predicted: '{r['predicted_eval']}' | eval: '{r['eval']}' | match: {r['predicted_eval'] == r['eval']}")
