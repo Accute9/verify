@@ -1,0 +1,11 @@
+fastapi==0.136.1
+uvicorn==0.47.0
+python-multipart==0.0.29
+websockets==15.0.1
+python-dotenv==1.2.2
+supabase==2.31.0
+langchain-openai==1.2.1
+httpx==0.28.1
+tavily==1.1.0
+openai-whisper==20250625
+beautifulsoup4==4.15.0
