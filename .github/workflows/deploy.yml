@@ -26,7 +26,7 @@ jobs:
             username: ${{ secrets.EC2_USERNAME }}
             key: ${{ secrets.EC2_SSH_KEY }}
             script: |
-              cd /verify
+              cd /home/ec2-user/verify
               set -e
               git pull origin main
               docker compose up --build -d
