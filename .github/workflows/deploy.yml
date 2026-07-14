@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - ci/cd-debug
     paths-ignore:
       - README.md
       - .gitignore
@@ -28,6 +28,7 @@ jobs:
             script: |
               cd /home/ec2-user/verify
               set -e
+              docker buildx version
               git pull origin main
               docker compose up --build -d
 
