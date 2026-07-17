@@ -14,7 +14,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://verity.vercel.app", "http://localhost:5173"],
     allow_credentials=True,
     allow_origin_regex="http://127.0.0.1:.*",
     allow_methods=["*"],
