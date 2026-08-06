@@ -4,3 +4,4 @@ venv/
 temp/
 *.md
 ece_results.json
+ece_pilot_results.json
