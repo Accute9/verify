@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { useFactCheckSession } from "./hooks/useFactCheckSession";
 import { TopBar } from "./components/TopBar";
 import { Hero } from "./components/Hero";
@@ -33,6 +34,8 @@ function App() {
       <footer className="border-t border-border py-4.5 text-center text-xs text-text-faint">
         Verify — live transcription and claim verification
       </footer>
+
+      <Analytics />
     </div>
   );
 }
