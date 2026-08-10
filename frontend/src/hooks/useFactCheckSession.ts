@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from "react";
 import type { EvalResult, RecordingStatus } from "../types";
 
-const WS_URL = "ws://3.21.57.201:8000/ws";
+const WS_URL = import.meta.env.VITE_WS_URL ?? "ws://127.0.0.1:8000/ws";
 
 interface ServerMessage {
   status?: string;
