@@ -9,6 +9,11 @@ historical accuracy at that confidence level instead of the raw self-report.
 Usage:
     python -m backend.api.ece_calibration.calibrate     # refit and save
 
+This fits on the full eval set, which is what you want for the deployed
+calibration_map.json (more data makes a better curve), but fitting and
+scoring on the same examples overstates how well the fit generalizes. See
+cross_validate.py for a 5-fold held-out ECE that isn't subject to that bias.
+
 At runtime, llm.evaluate_claim() loads the saved map and applies it to the
 raw averaged confidence before returning it to the caller. The raw value
 is still what's persisted to the DB and what compute_ece.py collects into
