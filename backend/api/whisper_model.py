@@ -1,4 +1,4 @@
-import whisper
+from faster_whisper import WhisperModel
 import asyncio
 import json
 import traceback
@@ -6,11 +6,11 @@ import os
 import uuid
 import subprocess
 
-model = whisper.load_model("tiny")
+model = WhisperModel("tiny", device="cpu", compute_type="float32")
 
 def transcribe_audio(file_path: str) -> str:
-    result = model.transcribe(file_path)
-    return result["text"]
+    segments, _ = model.transcribe(file_path)
+    return "".join(segment.text for segment in segments)
 
 def convert_webm_to_wav(file_path: str) -> str:
     output_path = file_path.replace(".webm", ".wav")
