@@ -11,12 +11,17 @@ from .prompts.claim_separator_prompt import claim_separator_prompt
 from .prompts.claim_evaluation_prompt import claim_evaluation_prompt
 from .search import retrieve_sources
 from .database.load_db import store_subclaim_evaluations, store_claim_evaluation, generate_bigint_id
+from .ece_calibration.calibrate import load_calibration_map, apply_calibration
 
 # from .prompts.claim_search_prompt  import claim_search_prompt
 
 load_dotenv()
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 SYSTEM_PROMPT = "You are a fact-checking assistant. Output only valid JSON"
+
+# Fit offline via `python -m backend.api.ece_calibration.calibrate`. Falls back
+# to returning raw confidence unchanged if no map has been fit yet.
+_CALIBRATION_MAP = load_calibration_map()
 
 async def call_llm(system: str, user: str, retries: int = 3) -> str:
     for attempt in range(retries):
@@ -84,14 +89,19 @@ async def evaluate_claim(content: str, transcript_id: int = None, eval_id: int =
     user = claim_evaluation_prompt(generated_claim, subclaims, search_results)
     eval_data = json.loads(await call_llm(SYSTEM_PROMPT, user))
     avg_confidence = average_confidence(eval_data)
+    calibrated_confidence = apply_calibration(avg_confidence, _CALIBRATION_MAP)
 
     claim_id = generate_bigint_id()
+    # Store the raw (uncalibrated) confidence so future calibration refits
+    # are always fit against the model's true self-report, not a
+    # previously-calibrated number.
     store_claim_evaluation(claim_id, eval_data["claim_evaluation"], avg_confidence, eval_data["reasoning"], transcript_id=transcript_id, eval_id=eval_id)
     store_subclaim_evaluations(eval_data["subclaim_evaluations"], claim_id, search_results)
 
     return_dict = {
         "claim_evaluation": eval_data["claim_evaluation"],
-        "confidence": avg_confidence,
+        "confidence": calibrated_confidence,
+        "raw_confidence": avg_confidence,
         "subclaim_evaluations": eval_data["subclaim_evaluations"],
         "reasoning": eval_data["reasoning"],
         "key_source": eval_data["key_source"]

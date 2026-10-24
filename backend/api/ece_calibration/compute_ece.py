@@ -11,7 +11,9 @@ async def compute_ece():
         try:
             prediction = await evaluate_claim(claim["claim"], eval_id=claim["eval_id"])
             predicted_eval = prediction["claim_evaluation"]
-            confidence = prediction["confidence"]
+            # Use raw_confidence, not the (already-calibrated) "confidence" key,
+            # so refits stay fit against the model's true self-report.
+            confidence = prediction["raw_confidence"]
             try:
                 results.append({
                     "eval_id": claim["eval_id"],
