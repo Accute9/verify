@@ -6,7 +6,7 @@ import os
 import uuid
 import subprocess
 
-model = whisper.load_model("base")
+model = whisper.load_model("tiny")
 
 def transcribe_audio(file_path: str) -> str:
     result = model.transcribe(file_path)
